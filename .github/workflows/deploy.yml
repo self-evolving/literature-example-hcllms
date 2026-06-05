@@ -1,0 +1,38 @@
+name: Validate literature site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-literature-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Quartz site
+        run: npm run check
+
+      - name: Build Quartz site
+        env:
+          HYPOTHESIS_ENABLED: ${{ vars.HYPOTHESIS_ENABLED || 'false' }}
+          HYPOTHESIS_OPEN_SIDEBAR: ${{ vars.HYPOTHESIS_OPEN_SIDEBAR || '' }}
+          HYPOTHESIS_SHOW_HIGHLIGHTS: ${{ vars.HYPOTHESIS_SHOW_HIGHLIGHTS || '' }}
+          HYPOTHESIS_COMMENTS_MODE: ${{ vars.HYPOTHESIS_COMMENTS_MODE || '' }}
+          HYPOTHESIS_GROUPS_ALLOWLIST: ${{ vars.HYPOTHESIS_GROUPS_ALLOWLIST || '' }}
+          HYPOTHESIS_THEME: ${{ vars.HYPOTHESIS_THEME || '' }}
+        run: npm run build
