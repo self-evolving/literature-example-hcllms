@@ -1,0 +1,13 @@
+{
+  "label": "Sections",
+  "pages": [
+    "01-introduction",
+    "02-hci",
+    "03-data",
+    "04-nlp",
+    "05-evaluation",
+    "06-responsible",
+    "07-applications",
+    "08-conclusion"
+  ]
+}

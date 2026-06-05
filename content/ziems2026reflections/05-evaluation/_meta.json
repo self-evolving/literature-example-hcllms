@@ -1,0 +1,8 @@
+{
+  "label": "Evaluation",
+  "pages": [
+    "01-model-level-evaluations",
+    "02-human-level-evaluations",
+    "03-societal-level-evaluation"
+  ]
+}

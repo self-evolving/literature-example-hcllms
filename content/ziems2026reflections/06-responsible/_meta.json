@@ -1,0 +1,8 @@
+{
+  "label": "Responsible Human-Centered LLMs",
+  "pages": [
+    "01-interpretable-and-explainable-hcllms",
+    "02-steerable-hcllms",
+    "03-safe-hcllms"
+  ]
+}
