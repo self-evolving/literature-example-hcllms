@@ -1,0 +1,59 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIyNTEyODI1",
+    "is_bot": false,
+    "login": "lolipopshock",
+    "name": "Shannon Shen"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n- route the Giscus drawer loader and theme postMessage target through a configurable Giscus host\n- default enabled comments to `https://comment-api.sepo.sh`\n\n## Checks\n- `npm run check`\n- `GISCUS_APP_HOST=https://comment-api.sepo.sh npm run build`\n\nFollow-up customization work can now happen in `self-evolving/comment-api` without requiring another GitHub App install.",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABFCnv-Q",
+      "author": {
+        "login": "vercel"
+      },
+      "authorAssociation": "NONE",
+      "body": "[vc]: #pIkjsUR0ytXTApS9vRtqkXJFrcrkxGoUAjJovOpQZuw=:eyJpc01vbm9yZXBvIjp0cnVlLCJ0eXBlIjoiZ2l0aHViIiwicHJvamVjdHMiOlt7Im5hbWUiOiJsaXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zIiwicHJvamVjdElkIjoicHJqX1FHWFYyeHo4RVZjVVozRktqRzZIc3dBalhIRmkiLCJpbnNwZWN0b3JVcmwiOiJodHRwczovL3ZlcmNlbC5jb20vY29kaXNjb3Zlci1haS9saXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zLzZxNnUxdlREUVZxcTlIa2VlZ2M3b3lwN3RwRnkiLCJwcmV2aWV3VXJsIjoibGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcy1naXQtY2hvcmUtdXNlLXNlLTA2YjBlOC1jb2Rpc2NvdmVyLWFpLnZlcmNlbC5hcHAiLCJuZXh0Q29tbWl0U3RhdHVzIjoiREVQTE9ZRUQiLCJsaXZlRmVlZGJhY2siOnsicmVzb2x2ZWQiOjAsInVucmVzb2x2ZWQiOjAsInRvdGFsIjowLCJsaW5rIjoibGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcy1naXQtY2hvcmUtdXNlLXNlLTA2YjBlOC1jb2Rpc2NvdmVyLWFpLnZlcmNlbC5hcHAifSwicm9vdERpcmVjdG9yeSI6bnVsbH1dLCJyZXF1ZXN0UmV2aWV3VXJsIjoiaHR0cHM6Ly92ZXJjZWwuY29tL3ZlcmNlbC1hZ2VudC9yZXF1ZXN0LXJldmlldz9vd25lcj1zZWxmLWV2b2x2aW5nJnJlcG89bGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcyZwcj01In0=\nThe latest updates on your projects. Learn more about [Vercel for GitHub](https://vercel.link/github-learn-more).\n\n| Project | Deployment | Actions | Updated (UTC) |\n| :--- | :----- | :------ | :------ |\n| [literature-example-hcllms](https://vercel.com/codiscover-ai/literature-example-hcllms) | ![Ready](https://vercel.com/static/status/ready.svg) [Ready](https://vercel.com/codiscover-ai/literature-example-hcllms/6q6u1vTDQVqq9Hkeegc7oyp7tpFy) | [Preview](https://literature-example-hcllms-git-chore-use-se-06b0e8-codiscover-ai.vercel.app), [Comment](https://vercel.live/open-feedback/literature-example-hcllms-git-chore-use-se-06b0e8-codiscover-ai.vercel.app?via=pr-comment-feedback-link) | Jun 5, 2026 3:55pm |\n\n<a href=\"https://vercel.com/vercel-agent/request-review?owner=self-evolving&repo=literature-example-hcllms&pr=5\" rel=\"noreferrer\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-dark.svg\"><source media=\"(prefers-color-scheme: light)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-light.svg\"><img src=\"https://agents-vade-review.vercel.sh/request-review-light.svg\" alt=\"Request Review\"></picture></a>\n\n",
+      "createdAt": "2026-06-05T15:53:38Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/5#issuecomment-4633260025",
+      "viewerDidAuthor": false
+    }
+  ],
+  "createdAt": "2026-06-05T15:53:32Z",
+  "files": [
+    {
+      "path": "quartz.ts",
+      "additions": 1,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/Comments.tsx",
+      "additions": 2,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/scripts/comments.inline.ts",
+      "additions": 11,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    }
+  ],
+  "headRefName": "chore/use-sepo-comment-api",
+  "labels": [],
+  "mergedAt": null,
+  "number": 5,
+  "reviewDecision": "",
+  "reviews": [],
+  "state": "OPEN",
+  "title": "Use Sepo-hosted Giscus service",
+  "updatedAt": "2026-06-05T15:55:45Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/5"
+}
