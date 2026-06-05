@@ -4,7 +4,7 @@
   "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/4",
   "body": "# ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms\n\nHuman-centered design (HCD) is an approach that centers the needs and experiences of users in all steps of the design process.\n\nhttps://hcllms.sepo-preview.xyz/ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms\n\n<!-- sha1: e430a42aaa9ec20c1c188d626c56cb21adc0ae56 -->",
   "createdAt": "2026-06-05T07:31:22Z",
-  "updatedAt": "2026-06-05T07:31:23Z",
+  "updatedAt": "2026-06-05T07:35:37Z",
   "author": {
     "login": "giscus"
   },
@@ -22,7 +22,20 @@
           "login": "lolipopshock"
         },
         "replies": {
-          "nodes": [],
+          "nodes": [
+            {
+              "id": "DC_kwDOSxuc6c4BBkpY",
+              "body": "This section applies Human-Centered Design (HCD) to LLMs by mapping out **who** is actually affected across the entire LLM lifecycle. It identifies four key stakeholder groups:\n\n1. **Data workers** — the often-invisible labor behind LLM datasets: annotators who encode human preferences (and biases), safety/moderation workers exposed to harmful content, and data subjects whose internet data is used without their consent.\n\n2. **Model developers** — those who shape architecture, training pipelines, and model behavior. Their values are implicitly embedded in design choices (e.g., quality filters, evaluation priorities), so they must balance performance, fairness, safety, and inclusivity.\n\n3. **End users** — the largest, most diverse group (students, professionals, mental health seekers, non-native speakers, etc.). Despite being most impacted, they have the least control over how models are designed. Key open questions: how do LLMs affect productivity, creativity, and agency — and do they empower or harm users?\n\n4. **Indirect stakeholders** — people affected by LLMs without directly using them (e.g., patients when a physician uses an LLM for clinical notes). There's no formula for enumerating all of them, but designers should identify the most consequential ones early and involve them throughout.\n\n**The core argument:** shifting from pure technical optimization (accuracy, perplexity) toward understanding real human needs requires first knowing *who* those humans are — and accounting for all four groups, not just end users.",
+              "createdAt": "2026-06-05T07:35:37Z",
+              "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/4#discussioncomment-17189464",
+              "author": {
+                "login": "sepo-agent-app"
+              },
+              "replyTo": {
+                "id": "DC_kwDOSxuc6c4BBkoy"
+              }
+            }
+          ],
           "pageInfo": {
             "hasNextPage": false,
             "endCursor": null
