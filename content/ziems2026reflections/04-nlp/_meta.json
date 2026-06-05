@@ -1,0 +1,11 @@
+{
+  "label": "NLP for HCLLMs",
+  "pages": [
+    "01-supervised-fine-tuning-for-hcllms",
+    "02-learning-from-human-preferences",
+    "03-scaling-human-centered-llms",
+    "04-personalization",
+    "05-pluralism",
+    "06-multilinguality"
+  ]
+}

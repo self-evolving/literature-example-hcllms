@@ -1,0 +1,9 @@
+{
+  "label": "Data for HCLLMs",
+  "pages": [
+    "01-data-provenance",
+    "02-data-representation-bias-and-ethics",
+    "03-consent-and-ownership",
+    "04-expanding-data-sources-synthetic-and-non-traditional-data"
+  ]
+}

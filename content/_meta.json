@@ -1,4 +1,7 @@
 {
-  "label": "Literature Notes",
-  "pages": ["notes", "papers"]
+  "label": "Reflections and New Directions for HCLLMs",
+  "pages": [
+    "ziems2026reflections",
+    "papers"
+  ]
 }

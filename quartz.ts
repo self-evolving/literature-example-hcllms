@@ -1,7 +1,11 @@
 import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
 import { registerCondition } from "./quartz/plugins/loader/conditions"
 import { componentRegistry } from "./quartz/components/registry"
-import type { QuartzComponent, QuartzComponentConstructor } from "./quartz/components/types"
+import type {
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzComponentProps,
+} from "./quartz/components/types"
 import DocPageHeader from "./quartz/components/DocPageHeader"
 import DocsExplorer from "./quartz/components/DocsExplorer"
 import SepoGraph from "./quartz/components/SepoGraph"
@@ -17,10 +21,21 @@ const siteBaseUrl =
     process.env.SITE_URL ?? process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL,
   ) ?? "literature-template.vercel.app"
 
-const isLibraryPage = (slug?: string) =>
-  Boolean(slug && slug !== "index" && !slug.startsWith("tags/"))
+const isPaperNote = (page: QuartzComponentProps) => page.fileData.frontmatter?.type === "paper"
 
-registerCondition("library-page", (page) => isLibraryPage(page.fileData.slug))
+// The root index (`/`) is a bare landing by default. When it has been promoted
+// to a hosted paper note (type: paper), it should render with the same chrome as
+// regular content pages — sidebar, page header, graph, backlinks, toolbar.
+const isLibraryPage = (page: QuartzComponentProps) => {
+  const slug = page.fileData.slug
+  if (!slug || slug.startsWith("tags/")) return false
+  if (slug === "index") return isPaperNote(page)
+  return true
+}
+
+registerCondition("library-page", (page) => isLibraryPage(page))
+// Builtin `not-index` excludes only the root index; include it when it is a paper note.
+registerCondition("not-index", (page) => page.fileData.slug !== "index" || isPaperNote(page))
 
 type GiscusMapping = "url" | "title" | "og:title" | "specific" | "number" | "pathname"
 type GiscusInputPosition = "top" | "bottom"
