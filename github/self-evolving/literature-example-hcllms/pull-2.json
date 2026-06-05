@@ -1,0 +1,409 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIyNTEyODI1",
+    "is_bot": false,
+    "login": "lolipopshock",
+    "name": "Shannon Shen"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n\nHosts arXiv:2605.06901, \"Reflections and New Directions for Human-Centered Large Language Models\" (Ziems, Zhao, Yang, et al., Stanford), as a literature-template example site. Built from the `self-evolving/literature-template` template using the **`paper-to-site`** skill.\n\n## Changes\n\n- `/` is the paper note and entry point — abstract, 8-chapter outline, source links.\n- Full text split into a section/subsection tree under `content/ziems2026reflections/` (eight chapters) with figures and the imported `bibliography.bib`.\n- LaTeX `sec:`/`subsec:`/`fig:` references rewritten into descriptive internal links.\n- `content/papers/` kept as the reference-note area; starter demo notes and sample papers removed.\n- **Root + section chrome:** relaxed `library-page`/`not-index` conditions (`quartz.ts`), dropped `folder.positions.right: []` so section indexes show the graph (`quartz.config.yaml`), and removed the `body[data-slug=\"index\"]` landing CSS (`custom.scss`) — so the root paper note and section indexes render like content pages (sidebar, header, graph, backlinks).\n\n## Validation\n\n- `npm run check` — tsc + prettier clean\n- `npm run build` — 34 pages, 99 files emitted\n\n## Deploy\n\nSet `SITE_URL` to the production domain. Vercel: framework **Other**, install `npm ci`, build `npm run build`, output `public`.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+  "closedAt": "2026-06-05T07:14:21Z",
+  "comments": [],
+  "createdAt": "2026-06-05T06:51:02Z",
+  "files": [
+    {
+      "path": "README.md",
+      "additions": 28,
+      "deletions": 199,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "bibliography.bib",
+      "additions": 22088,
+      "deletions": 36,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/_meta.json",
+      "additions": 5,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/index.md",
+      "additions": 29,
+      "deletions": 9,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/notes/_meta.json",
+      "additions": 0,
+      "deletions": 4,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/notes/attention-patterns.md",
+      "additions": 0,
+      "deletions": 28,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/notes/example-topic.md",
+      "additions": 0,
+      "deletions": 32,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/notes/index.md",
+      "additions": 0,
+      "deletions": 8,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/papers/_meta.json",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/papers/brown2020language.md",
+      "additions": 0,
+      "deletions": 36,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/papers/devlin2019bert.md",
+      "additions": 0,
+      "deletions": 36,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/papers/index.md",
+      "additions": 1,
+      "deletions": 16,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/papers/vaswani2017attention.md",
+      "additions": 0,
+      "deletions": 38,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "content/ziems2026reflections/01-introduction/_meta.json",
+      "additions": 4,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/01-introduction/index.md",
+      "additions": 20,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms.md",
+      "additions": 38,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/02-defining-the-what-principles-and-challenges-for-designing-hcllms.md",
+      "additions": 40,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/03-expanding-the-how-methods-from-hci-for-hcllms.md",
+      "additions": 30,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/04-from-human-centered-design-challenges-to-technical-artifacts.md",
+      "additions": 26,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/_meta.json",
+      "additions": 9,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/02-hci/index.md",
+      "additions": 16,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/01-data-provenance.md",
+      "additions": 46,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/02-data-representation-bias-and-ethics.md",
+      "additions": 38,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/03-consent-and-ownership.md",
+      "additions": 26,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/04-expanding-data-sources-synthetic-and-non-traditional-data.md",
+      "additions": 44,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/_meta.json",
+      "additions": 9,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/03-data/index.md",
+      "additions": 14,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/01-supervised-fine-tuning-for-hcllms.md",
+      "additions": 40,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/02-learning-from-human-preferences.md",
+      "additions": 38,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/03-scaling-human-centered-llms.md",
+      "additions": 44,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/04-personalization.md",
+      "additions": 32,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/05-pluralism.md",
+      "additions": 36,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/06-multilinguality.md",
+      "additions": 26,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/_meta.json",
+      "additions": 11,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/04-nlp/index.md",
+      "additions": 16,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/05-evaluation/01-model-level-evaluations.md",
+      "additions": 58,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/05-evaluation/02-human-level-evaluations.md",
+      "additions": 92,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/05-evaluation/03-societal-level-evaluation.md",
+      "additions": 32,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/05-evaluation/_meta.json",
+      "additions": 8,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/05-evaluation/index.md",
+      "additions": 16,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/06-responsible/01-interpretable-and-explainable-hcllms.md",
+      "additions": 48,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/06-responsible/02-steerable-hcllms.md",
+      "additions": 32,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/06-responsible/03-safe-hcllms.md",
+      "additions": 38,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/06-responsible/_meta.json",
+      "additions": 8,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/06-responsible/index.md",
+      "additions": 16,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/07-applications/01-defining-the-stakeholders.md",
+      "additions": 16,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/07-applications/02-developing-hcllms-for-the-future-of-work.md",
+      "additions": 24,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/07-applications/03-responsibly-deploying-hcllms-in-the-workforce.md",
+      "additions": 28,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/07-applications/_meta.json",
+      "additions": 8,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/07-applications/index.md",
+      "additions": 18,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/08-conclusion/_meta.json",
+      "additions": 4,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/08-conclusion/index.md",
+      "additions": 138,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/_meta.json",
+      "additions": 13,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/01_intro.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/02_hci.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/03_data.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/04_nlp.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/casestudy.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/sec5.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/figures/sec6.png",
+      "additions": 0,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "content/ziems2026reflections/index.md",
+      "additions": 10,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "quartz.config.yaml",
+      "additions": 3,
+      "deletions": 5,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz.ts",
+      "additions": 19,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/styles/custom.scss",
+      "additions": 3,
+      "deletions": 89,
+      "changeType": "MODIFIED"
+    }
+  ],
+  "headRefName": "import-arxiv-2605-06901",
+  "labels": [],
+  "mergedAt": "2026-06-05T07:14:21Z",
+  "number": 2,
+  "reviewDecision": "",
+  "reviews": [],
+  "state": "MERGED",
+  "title": "Host arXiv 2605.06901 (Reflections and New Directions for HCLLMs)",
+  "updatedAt": "2026-06-05T07:14:21Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/2"
+}

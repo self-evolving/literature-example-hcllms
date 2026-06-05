@@ -1,0 +1,38 @@
+{
+  "number": 4,
+  "title": "ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/4",
+  "body": "# ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms\n\nHuman-centered design (HCD) is an approach that centers the needs and experiences of users in all steps of the design process.\n\nhttps://hcllms.sepo-preview.xyz/ziems2026reflections/02-hci/01-understanding-the-who-the-humans-in-hcllms\n\n<!-- sha1: e430a42aaa9ec20c1c188d626c56cb21adc0ae56 -->",
+  "createdAt": "2026-06-05T07:31:22Z",
+  "updatedAt": "2026-06-05T07:31:23Z",
+  "author": {
+    "login": "giscus"
+  },
+  "category": {
+    "name": "Site comments"
+  },
+  "comments": {
+    "nodes": [
+      {
+        "id": "DC_kwDOSxuc6c4BBkoy",
+        "body": "@sepo-agent /answer what's the gist in this section?",
+        "createdAt": "2026-06-05T07:31:22Z",
+        "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/4#discussioncomment-17189426",
+        "author": {
+          "login": "lolipopshock"
+        },
+        "replies": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        }
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": null
+    }
+  }
+}
