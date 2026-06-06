@@ -7,3 +7,4 @@
 - `quartz/styles/custom.scss` should have landing-page-specific CSS stripped when converting a template to a single-paper site (the `body[data-slug="index"]` block was removed in PR #2).
 - The `/answer` skill is active on this repo — users tag `@sepo-agent /answer <question>` in giscus discussions on paper pages to request summaries.
 - `bibliography.bib` in the repo root holds the full paper bibliography (~22k lines for 2605.06901); it is imported alongside content, not generated.
+- Giscus comments route through a configurable `GISCUS_APP_HOST` env var (PR #5); default is `https://comment-api.sepo.sh`. Customization lives in `self-evolving/comment-api`.

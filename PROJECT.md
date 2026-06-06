@@ -23,5 +23,5 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 
 ## Open Questions
 
-- PR #1 (dependabot CI action bumps) and PR #3 (npm production deps bump) are open — needs review/merge decision
-- Discussion #4 has an unanswered `/answer` request from lolipopshock — is the answer workflow wired up?
+- PRs #1 (dependabot CI action bumps), #3 (npm prod deps bump), #5 (Giscus sepo-host), and #6 (responsive sidebar) are open — all need review/merge.
+- The `/answer` workflow IS wired up — discussion #4 was answered by sepo-agent-app within ~4 min on 2026-06-05.
