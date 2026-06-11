@@ -7,7 +7,7 @@
   },
   "baseRefName": "main",
   "body": "## Summary\n- route the Giscus drawer loader and theme postMessage target through a configurable Giscus host\n- default enabled comments to `https://comment-api.sepo.sh`\n\n## Checks\n- `npm run check`\n- `GISCUS_APP_HOST=https://comment-api.sepo.sh npm run build`\n\nFollow-up customization work can now happen in `self-evolving/comment-api` without requiring another GitHub App install.",
-  "closedAt": null,
+  "closedAt": "2026-06-11T06:33:52Z",
   "comments": [
     {
       "id": "IC_kwDOSxuc6c8AAAABFCnv-Q",
@@ -52,8 +52,8 @@
   "number": 5,
   "reviewDecision": "",
   "reviews": [],
-  "state": "OPEN",
+  "state": "CLOSED",
   "title": "Use Sepo-hosted Giscus service",
-  "updatedAt": "2026-06-05T15:55:45Z",
+  "updatedAt": "2026-06-11T06:33:52Z",
   "url": "https://github.com/self-evolving/literature-example-hcllms/pull/5"
 }
