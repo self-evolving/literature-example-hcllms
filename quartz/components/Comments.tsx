@@ -51,7 +51,7 @@ export default ((opts: Options) => {
     return (
       <div
         class="sepo-embed"
-        data-app-host={opts.options.appHost ?? "https://comment-api.sepo-preview.xyz"}
+        data-app-host={opts.options.appHost}
         data-repo={opts.options.repo}
         data-repo-id={opts.options.repoId}
         data-category={opts.options.category}
