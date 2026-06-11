@@ -23,6 +23,9 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 
 ## Open Questions
 
-- PRs #1 (dependabot CI action bumps), #3 (npm prod deps bump), and #5 (Giscus sepo-host) are open — all need review/merge.
+- PRs #1 (dependabot CI action bumps) and #3 (npm prod deps bump) are open — need review/merge.
+- PR #8 (sepo.js drawer + deployment events template sync) is open with a BLOCKING issue: `publish-preview-deployment.ts` and `inactivate-preview-deployments.ts` are missing from `.agent/src/cli/`; every deploy/teardown run will fail until these are added. Issue #7 (upgrade tracking) remains open.
+- PR #5 (Giscus sepo-host) was closed 2026-06-11 — superseded by PR #8.
 - PR #6 (responsive sidebar toolbar) was closed unmerged; responsive layout fix may resurface as future work.
+- `agent/rubrics` branch has not been initialized — `/review` calls return N/A scoring. Run `Agent / Rubrics / Initialization` workflow to bootstrap.
 - The `/answer` workflow IS wired up — discussion #4 was answered by sepo-agent-app within ~4 min on 2026-06-05.
