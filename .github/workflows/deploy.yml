@@ -35,4 +35,21 @@ jobs:
           HYPOTHESIS_COMMENTS_MODE: ${{ vars.HYPOTHESIS_COMMENTS_MODE || '' }}
           HYPOTHESIS_GROUPS_ALLOWLIST: ${{ vars.HYPOTHESIS_GROUPS_ALLOWLIST || '' }}
           HYPOTHESIS_THEME: ${{ vars.HYPOTHESIS_THEME || '' }}
+          GISCUS_ENABLED: ${{ vars.GISCUS_ENABLED || 'false' }}
+          GISCUS_REPO: ${{ vars.GISCUS_REPO || '' }}
+          GISCUS_REPO_ID: ${{ vars.GISCUS_REPO_ID || '' }}
+          GISCUS_CATEGORY: ${{ vars.GISCUS_CATEGORY || '' }}
+          GISCUS_CATEGORY_ID: ${{ vars.GISCUS_CATEGORY_ID || '' }}
+          GISCUS_APP_HOST: ${{ vars.GISCUS_APP_HOST || '' }}
+          GISCUS_TABS: ${{ vars.GISCUS_TABS || '' }}
+          GISCUS_CONTENT_REPO: ${{ vars.GISCUS_CONTENT_REPO || '' }}
+          GISCUS_DEFAULT_TAB: ${{ vars.GISCUS_DEFAULT_TAB || '' }}
+          GISCUS_MAPPING: ${{ vars.GISCUS_MAPPING || '' }}
+          GISCUS_STRICT: ${{ vars.GISCUS_STRICT || '' }}
+          GISCUS_REACTIONS_ENABLED: ${{ vars.GISCUS_REACTIONS_ENABLED || '' }}
+          GISCUS_INPUT_POSITION: ${{ vars.GISCUS_INPUT_POSITION || '' }}
+          GISCUS_LIGHT_THEME: ${{ vars.GISCUS_LIGHT_THEME || '' }}
+          GISCUS_DARK_THEME: ${{ vars.GISCUS_DARK_THEME || '' }}
+          GISCUS_LANG: ${{ vars.GISCUS_LANG || '' }}
+          GISCUS_TRIGGER_MODE: ${{ vars.GISCUS_TRIGGER_MODE || '' }}
         run: npm run build
