@@ -7,4 +7,4 @@
 - `quartz/styles/custom.scss` should have landing-page-specific CSS stripped when converting a template to a single-paper site (the `body[data-slug="index"]` block was removed in PR #2).
 - The `/answer` skill is active on this repo — users tag `@sepo-agent /answer <question>` in giscus discussions on paper pages to request summaries.
 - `bibliography.bib` in the repo root holds the full paper bibliography (~22k lines for 2605.06901); it is imported alongside content, not generated.
-- Comments use sepo.js drawer (PR #8 pending merge): `Comments.tsx` emits a `sepo-embed` config div; sepo.js loads from `GISCUS_APP_HOST` (default `https://comment-api.sepo.sh`); drawer UI ships from comment service.
+- Comments use sepo.js drawer: `Comments.tsx` emits a `sepo-embed` config div; sepo.js loads from `GISCUS_APP_HOST` (default `https://comment-api.sepo.sh`); drawer UI ships from comment service.
