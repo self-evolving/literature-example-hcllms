@@ -40,7 +40,10 @@ registerCondition("not-index", (page) => page.fileData.slug !== "index" || isPap
 type GiscusMapping = "url" | "title" | "og:title" | "specific" | "number" | "pathname"
 type GiscusInputPosition = "top" | "bottom"
 type GiscusTriggerMode = "pill" | "bot"
+type GiscusContentTab = "discussions" | "issues" | "pulls"
 type HypothesisTheme = NonNullable<HypothesisOptions["theme"]>
+
+const giscusContentTabs: readonly GiscusContentTab[] = ["discussions", "issues", "pulls"]
 
 const giscusRequiredEnv = [
   "GISCUS_REPO",
@@ -86,6 +89,28 @@ function listEnv(name: string) {
   return items.length > 0 ? items : undefined
 }
 
+// Values that reach the browser as URL bases: a relative or scheme-less
+// string would silently resolve against the page origin — fail the build.
+function requireAbsoluteHttpUrl(name: string, value: string): string {
+  let parsed: URL
+  try {
+    parsed = new URL(value)
+  } catch {
+    throw new Error(`${name} must be an absolute URL, got: ${value}`)
+  }
+  if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+    throw new Error(`${name} must use http(s), got: ${value}`)
+  }
+  return value
+}
+
+function giscusAppHost() {
+  return requireAbsoluteHttpUrl(
+    "GISCUS_APP_HOST",
+    envValue("GISCUS_APP_HOST") ?? "https://comment-api.sepo-preview.xyz",
+  )
+}
+
 function giscusComments() {
   if (!booleanEnv("GISCUS_ENABLED", false)) {
     return undefined
@@ -106,6 +131,55 @@ function giscusComments() {
     throw new Error("GISCUS_REPO must use the owner/name format")
   }
 
+  const tabs = listEnv("GISCUS_TABS") as GiscusContentTab[] | undefined
+  for (const tab of tabs ?? []) {
+    if (!giscusContentTabs.includes(tab)) {
+      throw new Error(`GISCUS_TABS must only contain: ${giscusContentTabs.join(", ")}`)
+    }
+  }
+
+  const contentRepo = envValue("GISCUS_CONTENT_REPO")
+  if (contentRepo && !contentRepo.includes("/")) {
+    throw new Error("GISCUS_CONTENT_REPO must use the owner/name format")
+  }
+
+  // Preview deployments bake the pull request they were built from so the
+  // drawer can open directly on that PR's conversation.
+  const previewPr = envValue("SEPO_PREVIEW_PR")
+  if (previewPr && !/^[1-9][0-9]*$/.test(previewPr)) {
+    throw new Error("SEPO_PREVIEW_PR must be a positive pull request number")
+  }
+  const prNumber = previewPr ? Number(previewPr) : undefined
+  if (prNumber && !tabs?.includes("pulls")) {
+    // Not fatal: the preview pill still works from the hostname/identity, but
+    // the in-drawer PR deep-link needs the pulls tab.
+    console.warn(
+      `SEPO_PREVIEW_PR=${prNumber} is set but the pulls tab is not enabled (GISCUS_TABS); ` +
+        "the drawer will not deep-link to the pull request.",
+    )
+  }
+  const previewBranch = envValue("SEPO_PREVIEW_BRANCH")
+  // For local pill testing: sepo.js only shows the pill on preview hostnames,
+  // so a localhost build simulates one with SEPO_PREVIEW_DOMAIN=localhost.
+  const previewDomain = envValue("SEPO_PREVIEW_DOMAIN")
+  const previewApiValue = envValue("SEPO_PREVIEW_API")
+  const previewApi = previewApiValue
+    ? requireAbsoluteHttpUrl("SEPO_PREVIEW_API", previewApiValue)
+    : undefined
+
+  const explicitDefaultTab = optionalEnumEnv<GiscusContentTab>(
+    "GISCUS_DEFAULT_TAB",
+    giscusContentTabs,
+  )
+  const enabledTabs: readonly GiscusContentTab[] = tabs ?? ["discussions"]
+  if (explicitDefaultTab && !enabledTabs.includes(explicitDefaultTab)) {
+    throw new Error(
+      `GISCUS_DEFAULT_TAB=${explicitDefaultTab} is not one of the enabled tabs (${enabledTabs.join(", ")})`,
+    )
+  }
+  const defaultTab =
+    explicitDefaultTab ?? (prNumber && tabs?.includes("pulls") ? "pulls" : undefined)
+
   return Comments({
     provider: "giscus",
     options: {
@@ -113,6 +187,7 @@ function giscusComments() {
       repoId,
       category,
       categoryId,
+      appHost: giscusAppHost(),
       mapping: enumEnv<GiscusMapping>(
         "GISCUS_MAPPING",
         ["url", "title", "og:title", "specific", "number", "pathname"],
@@ -125,11 +200,17 @@ function giscusComments() {
         ["top", "bottom"],
         "bottom",
       ),
-      lightTheme: envValue("GISCUS_LIGHT_THEME") ?? "light",
-      darkTheme: envValue("GISCUS_DARK_THEME") ?? "dark",
-      themeUrl: envValue("GISCUS_THEME_URL"),
+      lightTheme: envValue("GISCUS_LIGHT_THEME") ?? "sepo_light",
+      darkTheme: envValue("GISCUS_DARK_THEME") ?? "sepo_dark",
       lang: envValue("GISCUS_LANG") ?? "en",
       triggerMode: enumEnv<GiscusTriggerMode>("GISCUS_TRIGGER_MODE", ["pill", "bot"], "pill"),
+      tabs,
+      defaultTab,
+      contentRepo: contentRepo as `${string}/${string}` | undefined,
+      prNumber,
+      previewBranch,
+      previewDomain,
+      previewApi,
     },
   })
 }
