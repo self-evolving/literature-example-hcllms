@@ -23,7 +23,7 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 
 ## Open Questions
 
-- PRs #1 (dependabot CI action bumps) and #3 (npm prod deps bump) are open — need review/merge.
+- PR #1 (dependabot CI action bumps) is open — needs review/merge. PR #3 (npm prod deps bump) was closed unmerged 2026-06-12.
 - PR #8 (sepo.js drawer + deployment events template sync) is open with a BLOCKING issue: `publish-preview-deployment.ts` and `inactivate-preview-deployments.ts` are missing from `.agent/src/cli/`; every deploy/teardown run will fail until these are added. Issue #7 (upgrade tracking) remains open.
 - PR #5 (Giscus sepo-host) was closed 2026-06-11 — superseded by PR #8.
 - PR #6 (responsive sidebar toolbar) was closed unmerged; responsive layout fix may resurface as future work.
