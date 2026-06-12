@@ -6,7 +6,7 @@
     "name": "Shannon Shen"
   },
   "body": "@sepo-agent can you check the latest https://github.com/self-evolving/literature-template and upgrade it? ",
-  "closedAt": null,
+  "closedAt": "2026-06-12T01:40:15Z",
   "comments": [
     {
       "id": "IC_kwDOSxuc6c8AAAABFtNlrQ",
@@ -64,8 +64,8 @@
   "createdAt": "2026-06-11T06:43:02Z",
   "labels": [],
   "number": 7,
-  "state": "OPEN",
+  "state": "CLOSED",
   "title": "Upgrade",
-  "updatedAt": "2026-06-11T06:53:02Z",
+  "updatedAt": "2026-06-12T01:40:15Z",
   "url": "https://github.com/self-evolving/literature-example-hcllms/issues/7"
 }

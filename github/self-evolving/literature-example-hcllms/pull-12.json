@@ -1,0 +1,106 @@
+{
+  "author": {
+    "is_bot": true,
+    "login": "app/sepo-agent-app"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n\n- Adds `content/papers/shen2026ai.md` — the first substantive reference note in `content/papers/` — for Shen & Tamkin (2026), \"How AI Impacts Skill Formation\" (arXiv:2601.20245).\n- Includes frontmatter (title, authors, year, venue, URL, tags) and a body section rationalizing the paper's connection to the survey.\n- Updates `content/papers/_meta.json` to register `shen2026ai` in the pages array.\n- `bibliography.bib` already contained the correct BibTeX entry; no change needed there.\n\n## Relevance rationale\n\nThe paper is cited multiple times in [Chapter 7 — Responsibly Deploying HCLLMs in the Workforce](https://github.com/self-evolving/literature-example-hcllms/blob/main/content/ziems2026reflections/07-applications/03-responsibly-deploying-hcllms-in-the-workforce.md) as a primary empirical anchor for the **cognitive deskilling** risk (AI delegation erodes skill acquisition) and as evidence that interaction *pattern* — not just AI presence — determines learning outcomes. It also connects to [Chapter 5 — Societal-level Evaluation](https://github.com/self-evolving/literature-example-hcllms/blob/main/content/ziems2026reflections/05-evaluation/03-societal-level-evaluation.md), where it exemplifies the randomized, longitudinal evaluation design the survey argues is necessary to measure real-world LLM impact.\n\nCloses #11\n",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF1hT1w",
+      "author": {
+        "login": "vercel"
+      },
+      "authorAssociation": "NONE",
+      "body": "[vc]: #z2nxPnJW4F81k85Ba3K1Xpm40OQN3CHsTftzzhqo+7c=:eyJpc01vbm9yZXBvIjp0cnVlLCJ0eXBlIjoiZ2l0aHViIiwicHJvamVjdHMiOlt7Im5hbWUiOiJsaXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zIiwicHJvamVjdElkIjoicHJqX1FHWFYyeHo4RVZjVVozRktqRzZIc3dBalhIRmkiLCJpbnNwZWN0b3JVcmwiOiJodHRwczovL3ZlcmNlbC5jb20vY29kaXNjb3Zlci1haS9saXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zLzJUTXEzOEE2SDlKV1QzNDUzdUZGZmJhQUxkTW4iLCJwcmV2aWV3VXJsIjoibGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcy1naXQtYWdlbnQtaW1wbGVtLWNjNGQ1Mi1jb2Rpc2NvdmVyLWFpLnZlcmNlbC5hcHAiLCJuZXh0Q29tbWl0U3RhdHVzIjoiREVQTE9ZRUQiLCJsaXZlRmVlZGJhY2siOnsicmVzb2x2ZWQiOjAsInVucmVzb2x2ZWQiOjAsInRvdGFsIjowLCJsaW5rIjoibGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcy1naXQtYWdlbnQtaW1wbGVtLWNjNGQ1Mi1jb2Rpc2NvdmVyLWFpLnZlcmNlbC5hcHAifSwicm9vdERpcmVjdG9yeSI6bnVsbH1dLCJyZXF1ZXN0UmV2aWV3VXJsIjoiaHR0cHM6Ly92ZXJjZWwuY29tL3ZlcmNlbC1hZ2VudC9yZXF1ZXN0LXJldmlldz9vd25lcj1zZWxmLWV2b2x2aW5nJnJlcG89bGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcyZwcj0xMiJ9\nThe latest updates on your projects. Learn more about [Vercel for GitHub](https://vercel.link/github-learn-more).\n\n| Project | Deployment | Actions | Updated (UTC) |\n| :--- | :----- | :------ | :------ |\n| [literature-example-hcllms](https://vercel.com/codiscover-ai/literature-example-hcllms) | ![Ready](https://vercel.com/static/status/ready.svg) [Ready](https://vercel.com/codiscover-ai/literature-example-hcllms/2TMq38A6H9JWT3453uFFfbaALdMn) | [Preview](https://literature-example-hcllms-git-agent-implem-cc4d52-codiscover-ai.vercel.app), [Comment](https://vercel.live/open-feedback/literature-example-hcllms-git-agent-implem-cc4d52-codiscover-ai.vercel.app?via=pr-comment-feedback-link) | Jun 12, 2026 2:22am |\n\n<a href=\"https://vercel.com/vercel-agent/request-review?owner=self-evolving&repo=literature-example-hcllms&pr=12\" rel=\"noreferrer\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-dark.svg\"><source media=\"(prefers-color-scheme: light)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-light.svg\"><img src=\"https://agents-vade-review.vercel.sh/request-review-light.svg\" alt=\"Request Review\"></picture></a>\n\n",
+      "createdAt": "2026-06-12T01:54:11Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/12#issuecomment-4686631895",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF1k6JA",
+      "author": {
+        "login": "lolipopshock"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "@sepo-agent /fix-pr in our website build workflow, I want to use all giscus related repo variables -- can you add it? ",
+      "createdAt": "2026-06-12T02:07:59Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "THUMBS_UP",
+          "users": {
+            "totalCount": 1
+          }
+        },
+        {
+          "content": "EYES",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/12#issuecomment-4686690852",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF1lmWQ",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "**Sepo pushed fixes for this PR.** Branch: `agent/implement-issue-11/claude-27389325522`. Requested by @lolipopshock.\n\n<!-- sepo-agent-fix-pr-status -->\n\n- Added all 17 giscus-related environment variables (`GISCUS_ENABLED`, `GISCUS_REPO`, `GISCUS_REPO_ID`, `GISCUS_CATEGORY`, `GISCUS_CATEGORY_ID`, `GISCUS_APP_HOST`, `GISCUS_TABS`, `GISCUS_CONTENT_REPO`, `GISCUS_DEFAULT_TAB`, `GISCUS_MAPPING`, `GISCUS_STRICT`, `GISCUS_REACTIONS_ENABLED`, `GISCUS_INPUT_POSITION`, `GISCUS_LIGHT_THEME`, `GISCUS_DARK_THEME`, `GISCUS_LANG`, `GISCUS_TRIGGER_MODE`) to the **Build Quartz site** step in [`.github/workflows/deploy.yml`](https://github.com/self-evolving/literature-example-hcllms/blob/agent/implement-issue-11/claude-27389325522/.github/workflows/deploy.yml), sourced from `vars.*` repository variables.\n- Pattern follows the existing `HYPOTHESIS_*` variables: `GISCUS_ENABLED` defaults to `'false'`, all others default to `''` (treated as unset by `quartz.ts`'s `envValue()` helper).",
+      "createdAt": "2026-06-12T02:10:46Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/12#issuecomment-4686702169",
+      "viewerDidAuthor": true
+    }
+  ],
+  "createdAt": "2026-06-12T01:54:08Z",
+  "files": [
+    {
+      "path": ".github/workflows/agent-site-preview.yml",
+      "additions": 22,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".github/workflows/deploy.yml",
+      "additions": 17,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/papers/_meta.json",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "content/papers/shen2026ai.md",
+      "additions": 33,
+      "deletions": 0,
+      "changeType": "ADDED"
+    }
+  ],
+  "headRefName": "agent/implement-issue-11/claude-27389325522",
+  "labels": [],
+  "mergedAt": null,
+  "number": 12,
+  "reviewDecision": "",
+  "reviews": [],
+  "state": "OPEN",
+  "title": "Add paper note for shen2026ai (arXiv:2601.20245) to content/papers/",
+  "updatedAt": "2026-06-12T02:22:38Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/12"
+}

@@ -1,0 +1,32 @@
+{
+  "author": {
+    "is_bot": true,
+    "login": "app/sepo-agent-app"
+  },
+  "body": "## Goal\n\nAdd a reference paper note under `content/papers/` for the paper at https://arxiv.org/pdf/2601.20245 and explain how it relates to the existing survey content in this repo.\n\n## Context\n\nThis request came from [discussion #10](https://github.com/self-evolving/literature-example-hcllms/discussions/10), which is anchored to the [Societal-level Evaluation](https://github.com/self-evolving/literature-example-hcllms/blob/main/content/ziems2026reflections/05-evaluation/03-societal-level-evaluation.md) section of the hosted survey (`content/ziems2026reflections/05-evaluation/03-societal-level-evaluation.md`). The requester (`lolipopshock`) asked whether the paper should be added to the library and specifically asked for a rationalization of how it connects to the rest of the repo content.\n\nThe repo's `content/papers/` folder currently holds only a stub `index.md` with no actual paper notes yet — this would be the first substantive entry.\n\nThe primary survey (`content/index.md`) is arXiv:2605.06901 — \"Reflections and New Directions for Human-Centered Large Language Models\" (Ziems, Zhao, Yang et al., Stanford, 2026).\n\n## Acceptance Criteria\n\n- [ ] Fetch the abstract/metadata for arXiv:2601.20245 to confirm title, authors, year, and venue.\n- [ ] Create a note file at `content/papers/<citekey>.md` using the same frontmatter schema as `content/index.md` (title, description, type: paper, citekey, authors, year, venue, url, status, tags).\n- [ ] Include a brief body section in the note that explains the paper's relevance to the survey — specifically which section(s) of `content/ziems2026reflections/` it connects to (likely the Evaluation chapter and/or Societal-level Evaluation subsection) and what conceptual thread it adds.\n- [ ] Update `content/papers/_meta.json` to include the new page in the `pages` array.\n- [ ] If the paper's citekey already appears in `bibliography.bib`, verify the entry; otherwise add a BibTeX entry.\n- [ ] Open a PR with the changes.\n\n---\n\nRequested via discussion_comment at https://github.com/self-evolving/literature-example-hcllms/discussions/10\n",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF1hTXQ",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "**Sepo implementation finished**\n\n- Branch: `agent/implement-issue-11/claude-27389325522`\n- Pull request: https://github.com/self-evolving/literature-example-hcllms/pull/12\n\nCreated content/papers/shen2026ai.md — the first substantive entry in the papers/ reference library — for arXiv:2601.20245 ('How AI Impacts Skill Formation', Shen & Tamkin, 2026). The note includes full frontmatter (title, authors, year, venue, URL, tags) and a body section explaining the paper's relevance to two threads in the Ziems et al. survey: (1) the cognitive deskilling discussion in Chapter 7 (Responsibly Deploying HCLLMs in the Workforce), where the paper is already cited as a primary empirical anchor, and (2) the Societal-level Evaluation section of Chapter 5, where it exemplifies the RCT/longitudinal methodology the survey advocates. Also updated content/papers/_meta.json to register the new page. The bibliography.bib entry for shen2026ai was already present and correct.",
+      "createdAt": "2026-06-12T01:54:09Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/11#issuecomment-4686631773",
+      "viewerDidAuthor": true
+    }
+  ],
+  "createdAt": "2026-06-12T01:51:34Z",
+  "labels": [],
+  "number": 11,
+  "state": "OPEN",
+  "title": "Add paper note for arXiv:2601.20245 to content/papers/",
+  "updatedAt": "2026-06-12T01:54:09Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/issues/11"
+}

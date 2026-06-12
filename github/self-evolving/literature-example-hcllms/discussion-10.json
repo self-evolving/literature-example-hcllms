@@ -1,0 +1,51 @@
+{
+  "number": 10,
+  "title": "ziems2026reflections/05-evaluation/03-societal-level-evaluation",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/10",
+  "body": "# ziems2026reflections/05-evaluation/03-societal-level-evaluation\n\nWith the increasingly pervasive influence of large language models (LLM) across sensitive domains like mental health [@stade2024large; @abdurahman2024perils; @lawrence2024opportunities], education [@wang2024large], etc., and the complex challenges these models present, evaluating their impact on use...\n\nhttps://hcllms.sepo-preview.xyz/ziems2026reflections/05-evaluation/03-societal-level-evaluation\n\n<!-- sha1: 6ec219e966a8e38e9a2f25c673a73af0fc924642 -->",
+  "createdAt": "2026-06-12T01:50:03Z",
+  "updatedAt": "2026-06-12T01:51:36Z",
+  "author": {
+    "login": "sepo-agent-app"
+  },
+  "category": {
+    "name": "Site comments"
+  },
+  "comments": {
+    "nodes": [
+      {
+        "id": "DC_kwDOSxuc6c4BB5OM",
+        "body": "@sepo-agent /implement shall we consider adding this paper to our library -- you might want to rationalize how it is related to the rest of the paper content in this repo? also for a new paper you should include it in the papers/ folder https://arxiv.org/pdf/2601.20245 ",
+        "createdAt": "2026-06-12T01:50:04Z",
+        "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/10#discussioncomment-17273740",
+        "author": {
+          "login": "lolipopshock"
+        },
+        "replies": {
+          "nodes": [
+            {
+              "id": "DC_kwDOSxuc6c4BB5OX",
+              "body": "Implementing this request — tracking in https://github.com/self-evolving/literature-example-hcllms/issues/11.\n",
+              "createdAt": "2026-06-12T01:51:36Z",
+              "url": "https://github.com/self-evolving/literature-example-hcllms/discussions/10#discussioncomment-17273751",
+              "author": {
+                "login": "sepo-agent-app"
+              },
+              "replyTo": {
+                "id": "DC_kwDOSxuc6c4BB5OM"
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        }
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": null
+    }
+  }
+}

@@ -5,7 +5,7 @@
   },
   "baseRefName": "main",
   "body": "## Summary\n\nSyncs this repo with changes that landed in `self-evolving/literature-template` since repo creation (PRs #22, #28, #29, #30).\n\n- **`quartz.ts`** — adds `requireAbsoluteHttpUrl`, `giscusAppHost()`, `GiscusContentTab` type/constant, expands `giscusComments()` with tabs validation, `GISCUS_CONTENT_REPO`, `SEPO_PREVIEW_PR/BRANCH/DOMAIN/API` env vars, `appHost`, updated default themes (`sepo_light`/`sepo_dark`), removes `themeUrl`; preserves paper-at-root `isPaperNote`/`isLibraryPage`/`not-index` logic (this repo's `index.md` is `type: paper`)\n- **`quartz/components/Comments.tsx`** — simplified to a `sepo-embed` config div; drawer UI (trigger, panel, themes) now ships from `sepo.js` hosted by the Sepo comments service\n- **`quartz/components/scripts/comments.inline.ts`** — replaced giscus direct-embed logic with sepo.js loader that forwards config attributes and handles SPA navigation cleanup\n- **`.github/workflows/agent-site-preview.yml`** — switches permissions to `deployments: write`, uses `setup-agent-runtime` action, replaces PR comment step with `publish-preview-deployment.js` CLI + GitHub Deployment events, adds teardown job cleanup steps with `inactivate-preview-deployments.js`\n\nCloses #7\n",
-  "closedAt": null,
+  "closedAt": "2026-06-12T01:40:14Z",
   "comments": [
     {
       "id": "IC_kwDOSxuc6c8AAAABFtQHuA",
@@ -210,6 +210,21 @@
       "reactionGroups": [],
       "url": "https://github.com/self-evolving/literature-example-hcllms/pull/8#issuecomment-4684512768",
       "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF1d2Ag",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "## Rubrics Update\n\nNo changes were committed to [`agent/rubrics`](https://github.com/self-evolving/literature-example-hcllms/tree/agent/rubrics) from PR #8.\n\nHaving reviewed all the PR data, I can now assess whether rubric changes are warranted.\n\n**Summary of PR #8 conversation participants:**\n- PR author: `sepo-agent-app[bot]` — Bot, `authorAssociation: NONE`\n- All reviews: `sepo-agent-app[bot]` — Bot, `authorAssociation: NONE`\n- Issue comments: `vercel[bot]` — Bot\n- No human participants in the PR thread\n\n**Trusted contributor analysis:**\n- `Requested by: lolipopshock` started this run, but `lolipopshock` authored no content in PR #8 (no comments, no reviews)\n- The collaborator API returned no additional admin/maintain collaborators\n- The bot self-review comments (missing TS source files, empty `deploymentId` guard) are advisory evidence only — no trusted contributor explicitly agreed with either point\n\n**Conclusion:**\n\nNo human trusted contributors (OWNER, MEMBER, COLLABORATOR) participated in the PR conversation. All review comments originated from the agent bot itself (`sepo-agent-app[bot]`, `authorAssociation: NONE`). Per the rubric-learning rules, bot-authored comments cannot be converted into user/team preferences without explicit trusted-contributor endorsement.\n\n**no rubric changes**\n",
+      "createdAt": "2026-06-12T01:41:35Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/8#issuecomment-4686575106",
+      "viewerDidAuthor": true
     }
   ],
   "createdAt": "2026-06-11T06:53:01Z",
@@ -265,7 +280,7 @@
   ],
   "headRefName": "agent/implement-issue-7/claude-27329185999",
   "labels": [],
-  "mergedAt": null,
+  "mergedAt": "2026-06-12T01:40:14Z",
   "number": 8,
   "reviewDecision": "",
   "reviews": [
@@ -300,8 +315,8 @@
       }
     }
   ],
-  "state": "OPEN",
+  "state": "MERGED",
   "title": "feat: sync with literature-template (sepo.js drawer + deployment events)",
-  "updatedAt": "2026-06-11T20:08:03Z",
+  "updatedAt": "2026-06-12T01:41:35Z",
   "url": "https://github.com/self-evolving/literature-example-hcllms/pull/8"
 }
