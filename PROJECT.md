@@ -23,9 +23,8 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 
 ## Open Questions
 
-- PR #1 (dependabot CI action bumps) is open — needs review/merge. PR #3 (npm prod deps bump) was closed unmerged 2026-06-12.
-- PR #8 (sepo.js drawer + deployment events template sync) merged 2026-06-12; closes issue #7.
-- PR #5 (Giscus sepo-host) was closed 2026-06-11 — superseded by PR #8.
-- PR #6 (responsive sidebar toolbar) was closed unmerged; responsive layout fix may resurface as future work.
+- PR #1 (dependabot: CI deps bump, 5 packages) is open — needs review/merge.
+- PR #9 (dependabot: prod deps bump, 27 packages) is open — successor to closed PR #3.
+- PR #12 (add paper note `content/papers/shen2026ai.md`, closes issue #11) is open.
 - `agent/rubrics` branch has not been initialized — `/review` calls return N/A scoring. Run `Agent / Rubrics / Initialization` workflow to bootstrap.
-- The `/answer` workflow IS wired up — discussion #4 was answered by sepo-agent-app within ~4 min on 2026-06-05.
+- PR #6 (responsive sidebar toolbar) was closed unmerged — responsive layout fix may resurface as future work.
