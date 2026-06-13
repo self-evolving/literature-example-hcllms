@@ -1,0 +1,71 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIyNTEyODI1",
+    "is_bot": false,
+    "login": "lolipopshock",
+    "name": "Shannon Shen"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n- move the site to the new `SEPO_COMMENTS_*` comments build contract\n- add workflow-side comments defaults plus the reusable discussion ID resolver\n- forward only `SEPO_COMMENTS_*`, `SEPO_PREVIEW_*`, and `HYPOTHESIS_*` repository variables into builds\n- document the best-effort/strict comments behavior for this example site\n\n## Operational note\nThis repo currently has old `GISCUS_*` repository variables. Because this change intentionally does not support legacy aliases, migrate repo/Vercel configuration to `SEPO_COMMENTS_*` before or with merge if we want to preserve the current Site comments category:\n\n```bash\ngh variable set SEPO_COMMENTS_ENABLED --body true --repo self-evolving/literature-example-hcllms\ngh variable set SEPO_COMMENTS_REPO --body self-evolving/literature-example-hcllms --repo self-evolving/literature-example-hcllms\ngh variable set SEPO_COMMENTS_REPO_ID --body R_kgDOSxuc6Q --repo self-evolving/literature-example-hcllms\ngh variable set SEPO_COMMENTS_CATEGORY --body \"Site comments\" --repo self-evolving/literature-example-hcllms\ngh variable set SEPO_COMMENTS_CATEGORY_ID --body DIC_kwDOSxuc6c4C-jIx --repo self-evolving/literature-example-hcllms\ngh variable set SEPO_COMMENTS_TRIGGER_MODE --body bot --repo self-evolving/literature-example-hcllms\n```\n\n## Validation\n- `npm run check`\n- `SEPO_COMMENTS_REPO=self-evolving/repo-discussions SEPO_COMMENTS_REPO_ID=R_kgDOSjgnjQ SEPO_COMMENTS_CATEGORY=General SEPO_COMMENTS_CATEGORY_ID=DIC_kwDOSjgnjc4C9gaF SEPO_PREVIEW_PR=77 SEPO_PREVIEW_BRANCH=agent/demo npm run build`",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABF_yjwA",
+      "author": {
+        "login": "vercel"
+      },
+      "authorAssociation": "NONE",
+      "body": "[vc]: #xRn0PkxzB5CfFHCxbxrkE5QzkHMLQZuFzOXryAWGS74=:eyJpc01vbm9yZXBvIjp0cnVlLCJ0eXBlIjoiZ2l0aHViIiwicHJvamVjdHMiOlt7Im5hbWUiOiJsaXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zIiwicHJvamVjdElkIjoicHJqX1FHWFYyeHo4RVZjVVozRktqRzZIc3dBalhIRmkiLCJpbnNwZWN0b3JVcmwiOiJodHRwczovL3ZlcmNlbC5jb20vY29kaXNjb3Zlci1haS9saXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zL0R3ZW5BaGU5UTZyYlBKUk1pUUM1b1NDdjR3U00iLCJwcmV2aWV3VXJsIjoibGl0ZXJhdHVyZS1leGFtcGxlLWhjbGxtcy1naXQtdXBkYXRlLXNlcG8tY2MzN2RiLWNvZGlzY292ZXItYWkudmVyY2VsLmFwcCIsIm5leHRDb21taXRTdGF0dXMiOiJERVBMT1lFRCIsImxpdmVGZWVkYmFjayI6eyJyZXNvbHZlZCI6MCwidW5yZXNvbHZlZCI6MCwidG90YWwiOjAsImxpbmsiOiJsaXRlcmF0dXJlLWV4YW1wbGUtaGNsbG1zLWdpdC11cGRhdGUtc2Vwby1jYzM3ZGItY29kaXNjb3Zlci1haS52ZXJjZWwuYXBwIn0sInJvb3REaXJlY3RvcnkiOm51bGx9XSwicmVxdWVzdFJldmlld1VybCI6Imh0dHBzOi8vdmVyY2VsLmNvbS92ZXJjZWwtYWdlbnQvcmVxdWVzdC1yZXZpZXc/b3duZXI9c2VsZi1ldm9sdmluZyZyZXBvPWxpdGVyYXR1cmUtZXhhbXBsZS1oY2xsbXMmcHI9MTMifQ==\nThe latest updates on your projects. Learn more about [Vercel for GitHub](https://vercel.link/github-learn-more).\n\n| Project | Deployment | Actions | Updated (UTC) |\n| :--- | :----- | :------ | :------ |\n| [literature-example-hcllms](https://vercel.com/codiscover-ai/literature-example-hcllms) | ![Ready](https://vercel.com/static/status/ready.svg) [Ready](https://vercel.com/codiscover-ai/literature-example-hcllms/DwenAhe9Q6rbPJRMiQC5oSCv4wSM) | [Preview](https://literature-example-hcllms-git-update-sepo-cc37db-codiscover-ai.vercel.app), [Comment](https://vercel.live/open-feedback/literature-example-hcllms-git-update-sepo-cc37db-codiscover-ai.vercel.app?via=pr-comment-feedback-link) | Jun 13, 2026 3:55am |\n\n<a href=\"https://vercel.com/vercel-agent/request-review?owner=self-evolving&repo=literature-example-hcllms&pr=13\" rel=\"noreferrer\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-dark.svg\"><source media=\"(prefers-color-scheme: light)\" srcset=\"https://agents-vade-review.vercel.sh/request-review-light.svg\"><img src=\"https://agents-vade-review.vercel.sh/request-review-light.svg\" alt=\"Request Review\"></picture></a>\n\n",
+      "createdAt": "2026-06-13T03:55:16Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/13#issuecomment-4697400256",
+      "viewerDidAuthor": false
+    }
+  ],
+  "createdAt": "2026-06-13T03:55:10Z",
+  "files": [
+    {
+      "path": ".github/actions/resolve-discussion-ids/action.yml",
+      "additions": 92,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".github/workflows/agent-site-preview.yml",
+      "additions": 36,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".github/workflows/deploy.yml",
+      "additions": 35,
+      "deletions": 7,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "README.md",
+      "additions": 14,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz.ts",
+      "additions": 75,
+      "deletions": 64,
+      "changeType": "MODIFIED"
+    }
+  ],
+  "headRefName": "update-sepo-comments-contract",
+  "labels": [],
+  "mergedAt": null,
+  "number": 13,
+  "reviewDecision": "",
+  "reviews": [],
+  "state": "OPEN",
+  "title": "Update Sepo comments build contract",
+  "updatedAt": "2026-06-13T03:59:19Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/13"
+}
