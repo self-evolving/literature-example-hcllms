@@ -59,6 +59,20 @@ Recommended Vercel environment variable:
 | ---------- | -------------------------------------------------------------------------------------- |
 | `SITE_URL` | Production domain without protocol, e.g. `hcllms-survey.example.com` or a Vercel host. |
 
+## Sepo comments
+
+Comments are enabled by default on a best-effort basis. The shipped GitHub
+Actions workflows prepare the fixed `SEPO_COMMENTS_*`, `SEPO_PREVIEW_*`, and
+`HYPOTHESIS_*` build environment before Quartz runs: they default
+`SEPO_COMMENTS_REPO` to this repository, default `SEPO_COMMENTS_CATEGORY=General`,
+set pull request preview identity, and resolve the public GraphQL IDs needed by
+the Sepo/Giscus-compatible widget.
+
+If Discussions are disabled or IDs cannot be resolved, the default build logs a
+warning and ships without comments. Set `SEPO_COMMENTS_ENABLED=true` for strict
+build failures or `SEPO_COMMENTS_ENABLED=false` to opt out. Local/non-Actions
+builds should pin `SEPO_COMMENTS_REPO_ID` and `SEPO_COMMENTS_CATEGORY_ID`.
+
 ## Sepo controls
 
 Sepo workflows can be paused without disabling GitHub Actions globally by setting
