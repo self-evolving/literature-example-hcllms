@@ -8,3 +8,4 @@
 - The `/answer` skill is active on this repo — users tag `@sepo-agent /answer <question>` in giscus discussions on paper pages to request summaries.
 - `bibliography.bib` in the repo root holds the full paper bibliography (~22k lines for 2605.06901); it is imported alongside content, not generated.
 - Comments use sepo.js drawer: `Comments.tsx` emits a `sepo-embed` config div; sepo.js loads from `GISCUS_APP_HOST` (default `https://comment-api.sepo.sh`); drawer UI ships from comment service.
+- Sepo runtime upgrades here must overlay-merge (not copy wholesale) to keep literature customizations: deployment CLIs/tests, /answer alias, SEPO_SITE_BRANCH, discussion returning both id+url (load-bearing for publish-literature-update), and site build validation in test-scripts.yml.
