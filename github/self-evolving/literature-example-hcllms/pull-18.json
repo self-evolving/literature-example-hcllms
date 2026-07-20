@@ -1,0 +1,172 @@
+{
+  "author": {
+    "is_bot": true,
+    "login": "app/sepo-agent-app"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n\nFinishes the upstream migration from `self-evolving/literature-template`. PR #17 brought the `.agent` runtime and GitHub infra up to Sepo v0.5.0; this PR ports the remaining **quartz frontend / site layer** while preserving this repo's paper-site customizations.\n\n## Adopted from the template (framework/product evolution)\n\n- Layout can now be an array of placements: `quartz/plugins/loader/config-loader.ts` (+ new `config-loader.test.mjs`), `types.ts`, `quartz-plugins.schema.json`.\n- Race-condition-safe link previews: `quartz/components/scripts/popover.inline.ts`.\n- Comments rename **giscus → sepoComments**: `SEPO_COMMENTS_*` env, defaults ON with a graceful build-warning when unconfigured, `previewSwitcher` support. New `quartz/util/sepoComments.ts` (+ tests); `Comments.tsx`, `comments.inline.ts`, `quartz.ts` updated.\n- `SepoPageTitle.tsx` renders a repo GitHub link when `GITHUB_REPOSITORY` is set.\n- Removed the obsolete `quartz/static/giscus/{dark,light}.css` and their CORS wiring in `handlers.js` / `vercel.json` (drawer is now themed via `.sepo-comments` CSS variables).\n\n## Preserved repo customizations\n\n- **Paper-root-index chrome**: `content/index.md` is `type: paper`, so `quartz.ts` keeps `isPaperNote` plus the paper-aware `library-page` / custom `not-index` conditions so the root index renders with full chrome (sidebar, header, graph, backlinks, toolbar).\n- **Site identity**: `pageTitle`, `pageTitleSuffix`, and `baseUrl` in `quartz.config.yaml` (and the baseUrl fallback in `quartz.ts`).\n- **Section-index graph**: did not adopt the template's `folder.positions.right: []`, so folder listing pages keep their right-rail graph.\n- **No landing right-rail hide**: `custom.scss` gains the `.sepo-comments` theming block and mobile search selector but omits the template's `body[data-slug=\"index\"]` block that would hide the paper index's right sidebar.\n\n## Validation\n\n- `tsc --noEmit`\n- `npm test` — 76 passing (incl. new `sepoComments` and `config-loader` suites)\n- `npx prettier . --check`\n- `npm run build` — 97 files emitted; sepo-comments gracefully disabled with `SEPO_COMMENTS_REPO` unset\n- Spot-checked built HTML: paper root index and `/ziems2026reflections/` folder page both render the right-rail graph and `doc-page-header`\n\nCloses #16\n",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKzgrjw",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "Sepo is dispatching follow-up automation.\n\n| Source | Next | Target | Round | Status |\n| --- | --- | --- | --- | --- |\n| implement | review | PR #18 | 3 / 12 | Dispatched |\n\nReason: agent planner selected review: implement concluded success and produced PR #18, which ports the remaining v0.5 quartz frontend/site layer (giscus->sepoComments, layout-array config-loader, popover race fix) to finish the migration PR #17 started. A substantive multi-file framework change of this size warrants an automated review pass before human decision.\n\n<!-- sepo-agent-handoff state:dispatched created:1784534923684 base64:aGFuZG9mZjpzZWxmLWV2b2x2aW5nL2xpdGVyYXR1cmUtZXhhbXBsZS1oY2xsbXM6Mjk3MjU5OTg3NjU6aW1wbGVtZW50OjE2OnJldmlldzoxODoz -->",
+      "createdAt": "2026-07-20T08:08:43Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/18#issuecomment-5020068751",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKzohVA",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "## AI Review Synthesis\n\n<!-- sepo-agent-review-synthesis -->\n<!-- sepo-agent-review-synthesis-head: 2aa7d1d3e699c2635d224d4fd490e6340f62e07a -->\n\n> Dual-agent review by **Claude** and **Codex**.\n> Requested by @lolipopshock.\n\nInline comment posted. Now I'll write the synthesis. This is a single-reviewer synthesis (one review file), no prior inline comments or threads; all findings verified against the current diff.\n\n---\n\n## Summary of PR/Issue\n\nThis PR finishes the Sepo v0.5 migration that #17 began, porting the remaining **quartz frontend / site layer** from `self-evolving/literature-template` while preserving this repo's paper-site customizations. It renames comments **giscus → sepoComments** (new `SEPO_COMMENTS_*` env contract, default-ON with graceful degradation), adopts **layout-as-array** in the config-loader with group-wrapper hoisting, and rewrites the **link-preview popover** to be race-condition-safe. It also removes the obsolete giscus CSS + CORS wiring and preserves paper-root-index chrome, site identity/baseUrl, and the section-index graph. It fixes a genuinely broken half-state: on `main` today the workflows already emit `SEPO_COMMENTS_*` but `quartz.ts` still reads `GISCUS_*`, so comments are effectively unconfigured until this lands. Closes #16.\n\n## Review\n\nSolid, well-documented overlay migration that completes a broken half-state with a matching end-to-end env contract; the two framework changes (layout-array, popover race fix) are genuine improvements, and the build is CI-validated. Nothing blocking — the one substantive item is an ambiguous behavior change (comment drawer on tag pages), plus confirm-intent and CI-coverage notes.\n\n| Issue | Severity | Description |\n| -- | -- | -- |\n| `sepo-comments` layout condition removed entirely | WARNING | On `main` it was `condition: library-page`; now unconditional, so the comment drawer mounts on `tags/*` and other non-library pages — inconsistent with `doc-page-header` (kept `library-page`) and the graph (moved to `site-page`). |\n| Comments-knob typos soft-fail to a green build with no comments | WARNING | Invalid `SEPO_COMMENTS_DEFAULT_TAB` or discussions-only `SEPO_COMMENTS_TABS` without IDs now `console.warn` + disable comments instead of hard-failing (fatal only if `SEPO_COMMENTS_ENABLED=true`). Confirm this operator experience is intended. |\n| Redundant `data-app-host` fallback in `Comments.tsx` | INFO | `appHost ?? \"https://comment-api.sepo-preview.xyz\"`, but `sepoCommentsAppHost()` always returns a value, so the fallback is dead (harmless, matches runtime default). |\n| Frontend typecheck + new test suites not CI-enforced | INFO | `Agent / Site Preview` runs `npm run build` only; `test-scripts.yml` is path-gated to `.agent/**`/`.github/**`, so `tsc`, prettier, and both new suites are self-reported for this quartz-only change. |\n| `sepoComments()` env-glue untested | INFO | The `explicitlyConfigured` warn-vs-throw and `unavailable()` paths — where the \"default ON / graceful disable\" contract lives — have no coverage (the pure decision logic is well tested). |\n\n## Progress\n\n- **Validated by author:** `tsc --noEmit`, `npm test` (76 passing incl. new `sepoComments` + `config-loader` suites), `npx prettier --check`, `npm run build` (97 files); the `Agent / Site Preview` build check passed on CI.\n- **Reviewer-confirmed positives:** config-loader group-hoisting (whole Flex disappears when all members are desktop-only) is semantically better and test-covered; popover rewrite correctly fixes stale-fetch races, full-URL cache keys, and null-deref/`decodeURIComponent` throws; giscus CSS + CORS wiring removed cleanly with no dangling refs; extracted tab-decision logic has meaningful branch coverage.\n- **No prior feedback to dedup:** no existing inline comments or review threads on this PR (verified via REST + GraphQL); this is the first review pass (handoff round 3/12).\n- **Inline comment posted:** one on `quartz.config.yaml:272` covering the `sepo-comments` condition removal.\n\n## Issue Details\n\n<details>\n<summary><b>`sepo-comments` layout condition removed entirely</b></summary>\n\n**Cause:** In `quartz.config.yaml` the graph/`docs-explorer` moved `library-page → site-page` and `doc-page-header` kept `library-page`, but the `sepo-comments` block had `condition: library-page` **deleted** with no replacement. `isSitePage` only excludes `tags/*`, so an unconditional `afterBody` component now renders on tag listing pages and every other non-library page — a change from `main` behavior.\n\n**Candidate solutions:** If universal comments are intended, leave as-is. If not, add `condition: site-page` (keeps the drawer off `tags/*`, matching the graph) or restore `condition: library-page` (matches pre-PR behavior).\n\n**Comments:** Reads like an incomplete swap rather than a deliberate choice; low blast radius but visible. This is a maintainer intent call, hence the `HUMAN_DECISION` next step. Flagged inline at `quartz.config.yaml:272`.\n</details>\n\n<details>\n<summary><b>Comments-knob typos soft-fail to a green build with no comments</b></summary>\n\n**Cause:** The new \"default ON, degrade gracefully\" model routes an invalid `SEPO_COMMENTS_DEFAULT_TAB` or a discussions-only `SEPO_COMMENTS_TABS` without Discussion IDs through `unavailable()` → `console.warn` + comments disabled, instead of a hard build error. It only becomes fatal when `SEPO_COMMENTS_ENABLED=true` is set explicitly.\n\n**Candidate solutions:** Confirm soft-fail is the intended operator experience; optionally elevate specific typo cases (e.g., an unrecognized `DEFAULT_TAB`) to a build warning that is more visible, or document the degrade behavior. The hard-fail cases (malformed `repo`, bad `SEPO_PREVIEW_PR`) are correctly preserved.\n\n**Comments:** Internally consistent design; the risk is a green build silently shipping without comments. Judgment call, not a defect.\n</details>\n\n<details>\n<summary><b>Redundant `data-app-host` fallback in `Comments.tsx`</b></summary>\n\n**Cause:** `data-app-host={opts.options.appHost ?? \"https://comment-api.sepo-preview.xyz\"}`, but `sepoCommentsAppHost()` in `quartz.ts` always resolves a value (same default), so `appHost` is never nullish here.\n\n**Candidate solutions:** Optional — drop the `??` fallback, or keep it as defensive matching of the runtime default. Harmless either way.\n</details>\n\n<details>\n<summary><b>Frontend typecheck + new test suites not CI-enforced</b></summary>\n\n**Cause:** `deploy.yml` is `workflow_dispatch`-only and `test-scripts.yml` is path-gated to `.agent/**` + `.github/**`, so a quartz-only change runs neither `npm run check` (tsc + prettier) nor `npm test`. The passing check (`Agent / Site Preview`) runs `npm run build` only.\n\n**Candidate solutions:** Optionally add quartz source paths and an `npm test` / `npm run check` step to `test-scripts.yml` so frontend regressions are caught automatically. Out of scope for this PR unless the maintainer wants it bundled.\n</details>\n\n<details>\n<summary><b>`sepoComments()` env-glue untested</b></summary>\n\n**Cause:** `sepoComments.test.ts` covers the pure tab/default-tab decision logic well, but the `explicitlyConfigured` warn-vs-throw branching and `unavailable()` disable paths in `quartz.ts` — the actual \"default ON / graceful disable\" contract — have no tests.\n\n**Candidate solutions:** Optionally extract the warn-vs-throw decision into a pure helper and cover it, mirroring the existing extraction pattern. Low risk; the glue is thin.\n</details>\n\n## Recommended Next Step\n\n`HUMAN_DECISION` — the one substantive finding (comment drawer now rendering on `tags/*`) is an ambiguous intent question that needs a maintainer choice; the remaining items are confirm-intent or optional coverage notes, none safe for an automated guess at the intended behavior.\n\n## Final Verdict\n\n`MINOR_ISSUES`\n\n## Action Items\n\n- [ ] Decide whether `sepo-comments` should render on tag/non-library pages; if not intended, add `condition: site-page` (or restore `condition: library-page`) to the `sepo-comments` layout in `quartz.config.yaml`.\n- [ ] Confirm the comments soft-fail behavior (typo'd `SEPO_COMMENTS_*` knobs → green build, no comments) is the intended operator experience.\n\n---\n`claude` | `claude-opus-4-8` | `max` | `GitHub Actions 1000014575`",
+      "createdAt": "2026-07-20T08:24:42Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/18#issuecomment-5020197204",
+      "viewerDidAuthor": true
+    }
+  ],
+  "createdAt": "2026-07-20T08:07:42Z",
+  "files": [
+    {
+      "path": "quartz.config.yaml",
+      "additions": 17,
+      "deletions": 15,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz.ts",
+      "additions": 95,
+      "deletions": 71,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/cli/handlers.js",
+      "additions": 0,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/Comments.tsx",
+      "additions": 6,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/SepoPageTitle.tsx",
+      "additions": 57,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/scripts/comments.inline.ts",
+      "additions": 2,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/components/scripts/popover.inline.ts",
+      "additions": 93,
+      "deletions": 36,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/plugins/loader/config-loader.test.mjs",
+      "additions": 94,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "quartz/plugins/loader/config-loader.ts",
+      "additions": 75,
+      "deletions": 30,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/plugins/loader/types.ts",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/plugins/quartz-plugins.schema.json",
+      "additions": 70,
+      "deletions": 53,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/static/giscus/dark.css",
+      "additions": 0,
+      "deletions": 557,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "quartz/static/giscus/light.css",
+      "additions": 0,
+      "deletions": 556,
+      "changeType": "DELETED"
+    },
+    {
+      "path": "quartz/styles/custom.scss",
+      "additions": 15,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": "quartz/util/sepoComments.test.ts",
+      "additions": 65,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "quartz/util/sepoComments.ts",
+      "additions": 76,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": "vercel.json",
+      "additions": 1,
+      "deletions": 12,
+      "changeType": "MODIFIED"
+    }
+  ],
+  "headRefName": "agent/implement-issue-16/claude-29725998765",
+  "labels": [],
+  "mergedAt": null,
+  "number": 18,
+  "reviewDecision": "",
+  "reviews": [
+    {
+      "id": "PRR_kwDOSxuc6c8AAAABGh8-Og",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "",
+      "submittedAt": "2026-07-20T08:23:34Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "2aa7d1d3e699c2635d224d4fd490e6340f62e07a"
+      }
+    }
+  ],
+  "state": "OPEN",
+  "title": "Port v0.5 quartz frontend (giscus->sepoComments) from template",
+  "updatedAt": "2026-07-20T08:24:42Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/18"
+}

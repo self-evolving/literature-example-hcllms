@@ -7,7 +7,7 @@
   },
   "baseRefName": "main",
   "body": "## Summary\n\n- migrate the installed Sepo runtime from v0.3.0 to `self-evolving/repo@v0.5.0` (`5f7d203`)\n- update shared agent workflows, actions, prompts, docs, tests, and model defaults\n- add the missing literature-template deployment actions/workflow, issue templates, and root agent guidance\n- replace the obsolete `install-sepo.yml` issue form with the Markdown command template\n- preserve target-only bug/feature templates and literature-specific runtime behavior\n\n## Literature customizations preserved\n\nThe Sepo update was merged with the literature-template overlay rather than copied wholesale. In particular, this keeps:\n\n- discussion creation returning both the GraphQL node ID and URL, as required by `publish-literature-update`\n- preview/canonical deployment CLIs, helpers, and tests\n- literature update parsing/publishing and its tests\n- the `/chat` → `/answer` alias and `SEPO_SITE_BRANCH` implementation-base behavior\n- site build validation in `test-scripts.yml`\n\nThis addresses the TypeScript incompatibility that caused run `29708524273` to conclude `verify_failed`.\n\n## Infrastructure added\n\n- Sepo v0.5 cache seeding and self-improvement workflows\n- `deploy-sepo-site` and `resolve-discussion-ids` actions\n- canonical site deployment workflow\n- missing agent prompts and literature issue templates\n- `AGENTS.md` and `CLAUDE.md`\n\n## Validation\n\n- `bash .agent/scripts/post-agent-verify.sh`\n- `npm --prefix .agent test`\n- `npm run check`\n- `npm run build`\n- `npm test` — 69 passed\n- parsed every workflow, action manifest, and agent action template as YAML\n- `git diff --check`\n\nThe existing `agent/memory` branch was left untouched. No `agent/rubrics` branch currently exists.\n\nCloses #16\n",
-  "closedAt": null,
+  "closedAt": "2026-07-20T07:48:12Z",
   "comments": [
     {
       "id": "IC_kwDOSxuc6c8AAAABKxdejg",
@@ -66,6 +66,21 @@
       "reactionGroups": [],
       "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17#issuecomment-5017937063",
       "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKzYeCQ",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "## Rubrics Update\n\nNo changes were committed to [`agent/rubrics`](https://github.com/self-evolving/literature-example-hcllms/tree/agent/rubrics) from PR #17.\n\nI've reviewed the full PR conversation. Here's my assessment:\n\n**PR #17** is a Sepo v0.3→v0.5 infrastructure migration. Analyzing the conversation for durable, trusted-contributor preferences:\n\n- **lolipopshock** (Shannon Shen), the PR author and `Requested by` actor, has `author_association: CONTRIBUTOR`. Their only comment is `@sepo-agent /review` — a one-off command invocation, not an explicit request to add/update a rubric and not a durable preference statement.\n- **All other content** (the review synthesis, the pagination-gap WARNING, the inline comment) comes from `github-actions[bot]` with `author_association: NONE`. Per the instructions, bot/agent-authored feedback is advisory only and cannot become a user/team preference unless a trusted contributor explicitly endorses it. No trusted contributor endorsed any of it.\n- No `agent/rubrics` branch exists yet, and no existing `/rubrics/` to update.\n\nThere is no repeated reviewer feedback, no explicit human preference about style/workflow/communication, and no durable \"future agents should…\" instruction from a trusted contributor. The single WARNING (issue-list pagination gap) is a one-off code observation from a bot, not a stable user/team preference.\n\n**no rubric changes**\n\n---\n`claude` | `claude-opus-4-8` | `medium` | `GitHub Actions 1000014561`",
+      "createdAt": "2026-07-20T07:49:27Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17#issuecomment-5019934217",
+      "viewerDidAuthor": true
     }
   ],
   "createdAt": "2026-07-20T00:22:52Z",
@@ -673,7 +688,7 @@
   ],
   "headRefName": "chore/issue-16-sepo-v0.5-migration",
   "labels": [],
-  "mergedAt": null,
+  "mergedAt": "2026-07-20T07:48:11Z",
   "number": 17,
   "reviewDecision": "",
   "reviews": [
@@ -693,8 +708,8 @@
       }
     }
   ],
-  "state": "OPEN",
+  "state": "MERGED",
   "title": "Update infrastructure to Sepo v0.5.0",
-  "updatedAt": "2026-07-20T00:39:35Z",
+  "updatedAt": "2026-07-20T07:49:27Z",
   "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17"
 }
