@@ -13,7 +13,7 @@ Self-hosted runners are a good fit when you want:
 
 ## Local runner setup
 
-For the maintained setup scripts and step-by-step instructions, use [`.agent/tools/local-runner`](https://github.com/self-evolving/repo/blob/main/.agent/tools/local-runner/README.md). That folder contains the host requirement check, bootstrap, setup, start, stop, cleanup, and launchd template files for running local macOS self-hosted runners.
+For the maintained setup scripts and step-by-step instructions, use [`.agent/tools/local-runner`](https://github.com/self-evolving/repo/blob/main/.agent/tools/local-runner/README.md). That folder contains the host requirement check, bootstrap, setup, start, stop, cleanup, and cleanup scheduling files for running local macOS or Linux self-hosted runners. Scheduled cleanup uses launchd on macOS and cron on Linux.
 
 Keep this setup page focused on the decision to use self-hosted runners; keep machine-specific setup details in the local runner tool folder.
 
@@ -23,7 +23,7 @@ At a high level, the runner host needs Node support compatible with `.github/act
 
 ## Provider auth note
 
-On self-hosted runners, an explicit `AGENT_DEFAULT_PROVIDER=codex`, `AGENT_DEFAULT_PROVIDER=claude`, or route-specific `AGENT_MODEL_POLICY` provider override is treated as an operator choice. The provider resolver will select that provider even if the matching repository secret is absent, so single-agent runs and review synthesis can use local Codex or Claude authentication already configured on the machine. In `auto` mode, provider detection still relies on repository secrets and chooses Codex when `OPENAI_API_KEY` is configured; otherwise it chooses Claude when either `CLAUDE_CODE_OAUTH_TOKEN` or `ANTHROPIC_API_KEY` is configured. The same model policy can pass a provider-specific `model` to acpx. The review workflow still attempts explicit Claude and Codex reviewer lanes; provider and model resolution controls only the synthesis step that combines successful reviewer outputs.
+On self-hosted runners, an explicit `AGENT_DEFAULT_PROVIDER=codex`, `AGENT_DEFAULT_PROVIDER=claude`, or route-specific `AGENT_MODEL_POLICY` provider override is treated as an operator choice. The provider resolver will select that provider even if the matching repository secret is absent, so single-agent runs and review synthesis can use local Codex or Claude authentication already configured on the machine. In `auto` mode, provider detection still relies on repository secrets and chooses Codex when `OPENAI_API_KEY` is configured; otherwise it chooses Claude when either `CLAUDE_CODE_OAUTH_TOKEN` or `ANTHROPIC_API_KEY` is configured. Sepo passes a pinned built-in model for the selected provider by default, and `AGENT_MODEL_POLICY` can override that with a provider-specific or route-specific `model`. Sepo's built-in Claude default is `claude-opus-4-8`, which requires Claude Code v2.1.154 or later; run `claude update` on self-hosted runners with a preinstalled Claude CLI because `setup-agent-runtime` installs the current CLI only when `claude` is missing. The review workflow still attempts explicit Claude and Codex reviewer lanes; those lanes resolve pinned/provider-specific models with fixed providers, while `AGENT_DEFAULT_PROVIDER` controls only synthesis and other defaulted runs.
 
 ## Continuity note
 
