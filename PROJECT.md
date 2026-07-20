@@ -24,7 +24,8 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 ## Open Questions
 
 - PR #1 (dependabot: CI deps bump, 5 packages) is open — needs review/merge.
-- PR #9 (dependabot: prod deps bump, 27 packages) is open — successor to closed PR #3.
+- PR #15 (dependabot: prod deps bump, 30 packages) is open — latest successor in the #3→#9→#14→#15 chain (all prior closed unmerged).
 - PR #12 (add paper note `content/papers/shen2026ai.md`, closes issue #11) is open.
 - `agent/rubrics` branch has not been initialized — `/review` calls return N/A scoring. Run `Agent / Rubrics / Initialization` workflow to bootstrap.
 - PR #6 (responsive sidebar toolbar) was closed unmerged — responsive layout fix may resurface as future work.
+- PR #13 (Update Sepo comments build contract) is open — drops legacy GISCUS_* aliases; requires migrating repo/Vercel vars to SEPO_COMMENTS_* before/with merge.
