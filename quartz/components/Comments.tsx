@@ -6,9 +6,9 @@ type Options = {
   provider: "giscus"
   options: {
     repo: `${string}/${string}`
-    repoId: string
-    category: string
-    categoryId: string
+    repoId?: string
+    category?: string
+    categoryId?: string
     appHost?: string
     lightTheme?: string
     darkTheme?: string
@@ -25,6 +25,7 @@ type Options = {
     previewBranch?: string
     previewDomain?: string
     previewApi?: string
+    previewSwitcher?: "hover"
   }
 }
 
@@ -51,7 +52,7 @@ export default ((opts: Options) => {
     return (
       <div
         class="sepo-embed"
-        data-app-host={opts.options.appHost}
+        data-app-host={opts.options.appHost ?? "https://comment-api.sepo-preview.xyz"}
         data-repo={opts.options.repo}
         data-repo-id={opts.options.repoId}
         data-category={opts.options.category}
@@ -72,6 +73,7 @@ export default ((opts: Options) => {
         data-preview-branch={opts.options.previewBranch}
         data-preview-domain={opts.options.previewDomain}
         data-preview-api={opts.options.previewApi}
+        data-preview-switcher={opts.options.previewSwitcher}
         hidden
       ></div>
     )
