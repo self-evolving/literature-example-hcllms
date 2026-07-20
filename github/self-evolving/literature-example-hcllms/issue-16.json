@@ -1,0 +1,107 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIyNTEyODI1",
+    "is_bot": false,
+    "login": "lolipopshock",
+    "name": "Shannon Shen"
+  },
+  "body": "@sepo-agent /answer can you compare this current repo and the upstream https://github.com/self-evolving/literature-template and the migrate all the changes? ",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxTO7g",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "Here is the full comparison and a proposed migration plan:\n\n---\n\n## Comparison: `literature-example-hcllms` vs `literature-template`\n\n**Summary:** The current repo is running Sepo agent **v0.3.0**. The upstream template is at **v0.4.0** (released 2026-06-26). The delta spans the runtime (`.agent/`), GitHub Actions infra, prompt files, and a few root docs.\n\n---\n\n### Files missing from this repo (present in upstream template)\n\n| Category | Missing file(s) |\n|---|---|\n| Root docs | `AGENTS.md`, `CLAUDE.md` |\n| Workflow | `.github/workflows/agent-deploy-site-main.yml` |\n| Actions | `.github/actions/deploy-sepo-site/action.yml`, `.github/actions/resolve-discussion-ids/action.yml` |\n| Prompts | `.github/prompts/agent-add-rubrics.md`, `.github/prompts/agent-update.md`, `.github/prompts/followup-intent.md` |\n| Issue templates | `.github/ISSUE_TEMPLATE/add-paper.md`, `ask-sepo.md`, `config.yml`, `install-sepo.md`, `survey-topic.md` |\n\n### Files changed format in upstream (need replacement)\n\n| Current | Upstream equivalent | Note |\n|---|---|---|\n| `.github/ISSUE_TEMPLATE/install-sepo.yml` | `install-sepo.md` | CHANGELOG: now Markdown with command body instead of form |\n| `.github/ISSUE_TEMPLATE/ask-sepo.md` | *(already exists? no)* | New template added in v0.4.0 |\n\n### Files in this repo not in upstream (repo-specific or legacy)\n\n- `.github/ISSUE_TEMPLATE/bug_report.md` — not in template (repo-specific extra)\n- `.github/ISSUE_TEMPLATE/feature_request.md` — not in template (repo-specific extra)\n\n### v0.4.0 features being missed\n\nFrom [`.agent/CHANGELOG.md`](https://github.com/self-evolving/literature-example-hcllms/blob/main/.agent/CHANGELOG.md) in the upstream:\n- **Live progress comments** on direct implement and PR-fix runs\n- **`/add-rubrics` route** for proposing rubric changes via draft PRs\n- **GitHub attachment downloads** for private user attachments\n- **Bundled model defaults** via `.agent/model-defaults.json`\n- **Lane-based test scripts** in `.agent`\n- Issue templates updated to Markdown format for Ask Sepo and Install Sepo\n\n---\n\n## Proposed Migration Plan\n\nThe cleanest path is to **trigger the existing `agent-update` workflow**, which is designed for exactly this. It accepts a `source_repo` input.\n\n### Step 1 — Trigger `Agent / Update` workflow\n\nGo to **Actions → Agent / Update → Run workflow** with:\n```\nsource_repo: self-evolving/literature-template\nsource_ref:  (leave blank for latest)\nupdate_skills: false\n```\n\nThis will open a PR that bumps `.agent/` (the runtime dist), all shared workflow/action/prompt files, and the `.agent/CHANGELOG.md`. This handles the bulk of the 0.3.0 → 0.4.0 delta automatically.\n\n### Step 2 — Review and merge the update PR\n\nThe update PR will need human review to confirm no repo-specific customizations are overwritten. In particular, check:\n- `quartz.config.yaml` — repo-specific config, should not be overwritten\n- `.github/ISSUE_TEMPLATE/bug_report.md` and `feature_request.md` — repo-specific, keep them unless you want to remove them\n\n### Step 3 — Add new infrastructure files not covered by the update workflow\n\nAfter the update PR merges, file a follow-up `/implement` issue to add:\n1. `AGENTS.md` — agent instructions root file\n2. `CLAUDE.md` (currently just `@AGENTS.md`) \n3. `.github/ISSUE_TEMPLATE/add-paper.md` — issue-backed add-paper trigger\n4. `.github/ISSUE_TEMPLATE/survey-topic.md` — survey topic template\n5. Replace `.github/ISSUE_TEMPLATE/install-sepo.yml` with the Markdown version `install-sepo.md`\n\n---\n\n**Should I open a `/implement` issue to execute this migration, or do you want to trigger the `agent-update` workflow manually first?** The update workflow at `.github/workflows/agent-update.yml` is already present and ready to run.",
+      "createdAt": "2026-07-19T23:17:18Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16#issuecomment-5017751278",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxXQ4Q",
+      "author": {
+        "login": "lolipopshock"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "@sepo-agent /orchestrate work on this task -- one concrete difference is that sepo is already updated to v0.5.0 -- can you do that migration as well in this pr?",
+      "createdAt": "2026-07-19T23:43:11Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "THUMBS_UP",
+          "users": {
+            "totalCount": 1
+          }
+        },
+        {
+          "content": "EYES",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16#issuecomment-5017817313",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxYHbg",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "Sepo is dispatching follow-up automation.\n\n| Source | Next | Target | Round | Status |\n| --- | --- | --- | --- | --- |\n| orchestrate | implement | Issue #16 | 2 / 12 | Dispatched |\n\nReason: agent planner selected implement: User requested infrastructure migration from v0.3.0 → v0.5.0 in a single PR. Task is well-scoped and concrete: update .agent/ runtime, add new workflows, add missing actions/prompts/issue templates, add AGENTS.md and CLAUDE.md.\n\n<!-- sepo-agent-handoff state:dispatched created:1784504930346 base64:aGFuZG9mZjpzZWxmLWV2b2x2aW5nL2xpdGVyYXR1cmUtZXhhbXBsZS1oY2xsbXM6Mjk3MDgzNzM0ODQ6b3JjaGVzdHJhdGU6MTY6aW1wbGVtZW50OjE2OjI -->",
+      "createdAt": "2026-07-19T23:48:51Z",
+      "includesCreatedEdit": true,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16#issuecomment-5017831278",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxZfwQ",
+      "author": {
+        "login": "sepo-agent-app"
+      },
+      "authorAssociation": "NONE",
+      "body": "**Sepo made changes, but lightweight verification failed.**\n\nInspect the workflow logs before retrying implementation.\n\nMigrated the repository from Sepo v0.3.0 to v0.5.0 and added all missing literature-template infrastructure. Updated the entire .agent/ runtime (TypeScript source, scripts, docs, tools) to sepo v0.5.0, bringing in new modules for progress reporting, self-improvement, GitHub attachment download, actor association, and runtime-env. Updated all 27 sepo-owned GitHub Actions workflows to v0.5.0, adding new agent-cache-seed.yml and agent-self-improvement.yml workflows. Updated all 10 sepo-owned actions (setup-agent-runtime, run-agent-task, resolve-agent-provider, etc.) to v0.5.0. Updated all shared prompts and added 4 previously missing prompts (agent-add-rubrics.md, agent-self-improvement.md, agent-update.md, followup-intent.md). Added 5 missing issue templates (add-paper.md, ask-sepo.md, config.yml, install-sepo.md, survey-topic.md) and removed the obsolete install-sepo.yml form. Added literature-template-specific infrastructure: deploy-sepo-site and resolve-discussion-ids actions, agent-deploy-site-main.yml workflow. Added root AGENTS.md and CLAUDE.md from the literature-template. Literature-specific .agent source files (publish-preview-deployment.ts, inactivate-preview-deployments.ts, publish-literature-update.ts, deployments.ts, literature-update.ts) were restored from the template after the rsync to preserve existing site workflow compatibility.",
+      "createdAt": "2026-07-19T23:59:17Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16#issuecomment-5017853889",
+      "viewerDidAuthor": true
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxZ88Q",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "Sepo orchestration stopped after `implement` concluded `verify_failed`.\n\n- Source action: `implement`\n- Source conclusion: `verify_failed`\n- Target: `issue #16`\n- Round: `2/12`\n- Reason: agent planner requested implement, but policy disallows handoff: implement concluded verify_failed\n- Source run ID: `29708524273`\n\nNo follow-up workflow was dispatched. Inspect the source action status comment and workflow logs before retrying or continuing manually.\n\n<!-- sepo-agent-orchestrate-stop -->",
+      "createdAt": "2026-07-20T00:03:10Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16#issuecomment-5017861361",
+      "viewerDidAuthor": false
+    }
+  ],
+  "createdAt": "2026-07-19T22:59:43Z",
+  "labels": [],
+  "number": 16,
+  "state": "OPEN",
+  "title": "Update the infra from the upstream",
+  "updatedAt": "2026-07-20T00:03:10Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/issues/16"
+}

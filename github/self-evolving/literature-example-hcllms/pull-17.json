@@ -1,0 +1,700 @@
+{
+  "author": {
+    "id": "MDQ6VXNlcjIyNTEyODI1",
+    "is_bot": false,
+    "login": "lolipopshock",
+    "name": "Shannon Shen"
+  },
+  "baseRefName": "main",
+  "body": "## Summary\n\n- migrate the installed Sepo runtime from v0.3.0 to `self-evolving/repo@v0.5.0` (`5f7d203`)\n- update shared agent workflows, actions, prompts, docs, tests, and model defaults\n- add the missing literature-template deployment actions/workflow, issue templates, and root agent guidance\n- replace the obsolete `install-sepo.yml` issue form with the Markdown command template\n- preserve target-only bug/feature templates and literature-specific runtime behavior\n\n## Literature customizations preserved\n\nThe Sepo update was merged with the literature-template overlay rather than copied wholesale. In particular, this keeps:\n\n- discussion creation returning both the GraphQL node ID and URL, as required by `publish-literature-update`\n- preview/canonical deployment CLIs, helpers, and tests\n- literature update parsing/publishing and its tests\n- the `/chat` → `/answer` alias and `SEPO_SITE_BRANCH` implementation-base behavior\n- site build validation in `test-scripts.yml`\n\nThis addresses the TypeScript incompatibility that caused run `29708524273` to conclude `verify_failed`.\n\n## Infrastructure added\n\n- Sepo v0.5 cache seeding and self-improvement workflows\n- `deploy-sepo-site` and `resolve-discussion-ids` actions\n- canonical site deployment workflow\n- missing agent prompts and literature issue templates\n- `AGENTS.md` and `CLAUDE.md`\n\n## Validation\n\n- `bash .agent/scripts/post-agent-verify.sh`\n- `npm --prefix .agent test`\n- `npm run check`\n- `npm run build`\n- `npm test` — 69 passed\n- parsed every workflow, action manifest, and agent action template as YAML\n- `git diff --check`\n\nThe existing `agent/memory` branch was left untouched. No `agent/rubrics` branch currently exists.\n\nCloses #16\n",
+  "closedAt": null,
+  "comments": [
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxdejg",
+      "author": {
+        "login": "lolipopshock"
+      },
+      "authorAssociation": "CONTRIBUTOR",
+      "body": "@sepo-agent /review ",
+      "createdAt": "2026-07-20T00:30:00Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [
+        {
+          "content": "THUMBS_UP",
+          "users": {
+            "totalCount": 1
+          }
+        },
+        {
+          "content": "EYES",
+          "users": {
+            "totalCount": 1
+          }
+        }
+      ],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17#issuecomment-5017919118",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxduEg",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "The daily entry was saved. Now I'll compose the final review output.\n\n## Rubrics Review\n\n| Total Score | Verdict | Rubrics Scored |\n| -- | -- | -- |\n| N/A | N/A | 0 |\n\n| Dimension | Rubric | Result | Score | Evidence |\n| -- | -- | -- | -- | -- |\n| — | — | not applicable | N/A | No rubrics configured |\n\n## Notes\n\n- No rubrics were selected because the `agent/rubrics` branch has not been initialized for this repository. Without a rubrics branch, there are no scoring dimensions to evaluate against.\n- To enable rubric-based reviews, run the **Agent / Rubrics / Initialization** workflow to bootstrap the `agent/rubrics` branch, then re-trigger `/review` on any open PR.\n\n## Findings\n\n- **INFO:** PR #17 (\"Update infrastructure to Sepo v0.5.0\") is a large, well-documented infrastructure upgrade (97 files changed, 69 tests passing per the PR body). The PR body lists explicit validation steps (`npm test`, `npm run build`, `npm run check`, YAML parsing, `git diff --check`). No rubric violations can be assessed without an active rubrics set, but no obvious blocking issues are visible at a surface level.\n- **INFO:** The `agent/rubrics` branch is still uninitialised as of 2026-07-20. This is a standing gap noted in project memory — `/review` requests will continue returning N/A until the rubrics bootstrap workflow is run.\n\n## Final Rubric Verdict\n\nN/A",
+      "createdAt": "2026-07-20T00:32:12Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17#issuecomment-5017923090",
+      "viewerDidAuthor": false
+    },
+    {
+      "id": "IC_kwDOSxuc6c8AAAABKxekpw",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "## AI Review Synthesis\n\n<!-- sepo-agent-review-synthesis -->\n<!-- sepo-agent-review-synthesis-head: dfdaf8d65e159ebf35a1cb4d78ff50852340f595 -->\n\n> Dual-agent review by **Claude** and **Codex**.\n> Requested by @lolipopshock.\n\nThe inline comment posted successfully. Now I'll produce the final synthesis.\n\n---\n\n## Summary of PR/Issue\n\nPR #17 upgrades the installed Sepo runtime from v0.3.0 to v0.5.0 using an overlay merge strategy against the literature-template, preserving repo-specific customizations (deployment CLIs, `/answer` alias, `SEPO_SITE_BRANCH`, discussion `id`+`url` return). The update fixes a TypeScript incompatibility that caused run `29708524273` to conclude `verify_failed`. It adds three major capabilities — live-progress reporting, a self-improvement workflow, and GitHub attachment download — along with OIDC auth, actor-association logic, and infrastructure scaffolding (workflows, actions, agent prompts, issue templates). All 69 tests pass and explicit validation steps (build, type-check, YAML parse, `git diff --check`) were run by the author.\n\n---\n\n## Review\n\nThis is a thorough, well-structured runtime upgrade with comprehensive test coverage and careful preservation of literature-specific behavior. The design choices (self-improvement opt-in, progress policy defaults, triage default change) are sound and documented. One low-risk pagination gap warrants tracking before this runtime spreads to higher-volume repositories.\n\n| Issue | Severity | Description |\n| -- | -- | -- |\n| Issue list pagination gap | WARNING | `findExistingRunProposalIssue` fetches at most 100 issues with no page loop; in repos with >100 open issues a same-run proposal could be missed, creating a duplicate. |\n| `/tmp` hardcoded fallback | INFO | `self-improvement.ts` uses `\"/tmp\"` as a string literal fallback while peer modules use `os.tmpdir()`; minor cross-platform inconsistency. |\n| `AGENT_DISPLAY_MODEL` default flip | INFO | Default changed from `false` to `true`; existing deployed repos will now show provider/model/runner footers on agent responses where they previously didn't. |\n| `AGENTS.md`/`CLAUDE.md` not in diff | INFO | PR summary lists both as added infrastructure, but neither appears in the files list; worth confirming they are present on the branch. |\n| No rubrics configured | INFO | `agent/rubrics` branch is uninitialized; rubric-based review returned N/A and will continue to do so until the rubrics bootstrap workflow is run. |\n\n---\n\n## Progress\n\n- 69 tests passing; 16 new test files covering all major new modules (progress, self-improvement, attachment download, actor association, reactions, followup intent)\n- `github-attachment-download.ts` security posture verified good: strict URL allowlist, content-length fast-fail + streaming size cap, `AbortController` kept alive through body read, SHA-256 deterministic filenames\n- `acpx` wide semver range (`^0.6.1` → `^0.12.0`) mitigated by pinned lock file entry\n- `sleepSync` with `Atomics.wait` confirmed as correct blocking-sleep pattern for sync CLIs on modern Node.js\n- `discussion.ts` tightening (require both `id` and `url`) is correct and load-bearing for `publish-literature-update`\n- Triage default change (`answer` for uncommanded mentions, `AGENT_TRIAGE_MODE=agent` to restore old behavior) documented in changelog, config list, and architecture diagrams\n- Inline comment posted on `.agent/src/cli/apply-self-improvement-decision.ts:152` flagging the pagination gap\n\n---\n\n## Issue Details\n\n<details>\n<summary>Issue list pagination gap</summary>\n\n**Cause:** `findExistingRunProposalIssue` calls `gh api --method GET repos/{repo}/issues -f per_page=100` with no `page` parameter loop. If the repo accumulates >100 total issues (open or closed, since `state=all`), the function can silently miss an existing proposal issue for the same run and create a duplicate.\n\n**Candidate solutions:**\n1. Replace the single `gh(...)` call with `gh([\"api\", \"--paginate\", ...])` and concatenate pages before filtering.\n2. Add a label filter (`-f label=agent/self-improvement`) so the result set stays small without pagination; this requires the issue-creation path to attach that label.\n3. Accept the risk for now with a code comment, given this repo's small issue volume, and track as a follow-up.\n\n**Comments:** The claude reviewer rated this WARNING but still voted SHIP given the low practical risk for this specific repository.\n\n</details>\n\n<details>\n<summary>`/tmp` hardcoded fallback</summary>\n\n**Cause:** `writeTempMarkdownFile` in `self-improvement.ts` uses `process.env.RUNNER_TEMP || \"/tmp\"` with a string literal fallback. Other modules (`progress-cancel.ts`, `github-attachment-download.ts`) use `os.tmpdir()` for the same pattern.\n\n**Candidate solutions:** Replace `\"/tmp\"` with `os.tmpdir()` for consistency. No behavior difference on GitHub Actions Linux runners.\n\n</details>\n\n<details>\n<summary>`AGENT_DISPLAY_MODEL` default flip</summary>\n\n**Cause:** The new `model-defaults.json` or runtime config changes `AGENT_DISPLAY_MODEL` from `false` to `true`. Any repo inheriting this runtime will begin showing provider/model/runner footers on all agent responses after merging.\n\n**Candidate solutions:** Accept as intentional — the change is documented in the changelog and configuration list. Existing repos can opt out with `AGENT_DISPLAY_MODEL=false`.\n\n</details>\n\n<details>\n<summary>`AGENTS.md`/`CLAUDE.md` not in diff</summary>\n\n**Cause:** The PR body lists `AGENTS.md` and `CLAUDE.md` as added infrastructure, but neither appears in the 97-file diff. They may be at the repo root (outside `.agent/`) and simply not captured in the files summary, or they may not have been committed.\n\n**Candidate solutions:** Confirm these files exist on the PR branch with `gh api repos/self-evolving/literature-example-hcllms/contents/AGENTS.md?ref=dfdaf8d65e159ebf35a1cb4d78ff50852340f595`. If missing, add them.\n\n</details>\n\n---\n\n## Recommended Next Step\n\n**HUMAN_DECISION** — the one WARNING (pagination gap) requires a design choice between `--paginate` and a label-based filter before an automated fix-pr pass would be appropriate; all other findings are informational or require a maintainer acceptance call.\n\n---\n\n## Final Verdict\n\n**MINOR_ISSUES**\n\n---\n\n## Action Items\n\n- [ ] Fix `findExistingRunProposalIssue` in `.agent/src/cli/apply-self-improvement-decision.ts` to paginate or label-filter the issue list so runs in higher-volume repos cannot miss an existing proposal issue\n- [ ] Confirm `AGENTS.md` and `CLAUDE.md` are present on the PR branch; add them if missing\n- [ ] (Optional) Replace `\"/tmp\"` literal with `os.tmpdir()` in `self-improvement.ts:writeTempMarkdownFile` for consistency with peer modules",
+      "createdAt": "2026-07-20T00:39:35Z",
+      "includesCreatedEdit": false,
+      "isMinimized": false,
+      "minimizedReason": "",
+      "reactionGroups": [],
+      "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17#issuecomment-5017937063",
+      "viewerDidAuthor": false
+    }
+  ],
+  "createdAt": "2026-07-20T00:22:52Z",
+  "files": [
+    {
+      "path": ".agent/CHANGELOG.md",
+      "additions": 52,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/README.md",
+      "additions": 9,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/action-templates/agent-action-template.yml",
+      "additions": 1,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/architecture/overall-design.md",
+      "additions": 13,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/architecture/request-lifecycle.md",
+      "additions": 13,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/architecture/rubrics.md",
+      "additions": 12,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/customization/access-policy.md",
+      "additions": 2,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/customization/configuration-list.md",
+      "additions": 39,
+      "deletions": 6,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/index.md",
+      "additions": 17,
+      "deletions": 7,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/overview/quick-start.md",
+      "additions": 5,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/setup/install-existing-repository.md",
+      "additions": 5,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/setup/self-hosted-github-action-runner.md",
+      "additions": 2,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/setup/setup-guide.md",
+      "additions": 17,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/technical-details/developer-notes.md",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/technical-details/key-concepts.md",
+      "additions": 7,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/technical-details/session-continuity.md",
+      "additions": 2,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/usage/agent-actions.md",
+      "additions": 25,
+      "deletions": 8,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/usage/internal-actions.md",
+      "additions": 5,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/docs/usage/supported-workflows.md",
+      "additions": 85,
+      "deletions": 17,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/model-defaults.json",
+      "additions": 15,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/package-lock.json",
+      "additions": 515,
+      "deletions": 206,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/package.json",
+      "additions": 9,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/scripts/test/cli-cache-keys.test.cjs",
+      "additions": 103,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/acpx-adapter.test.ts",
+      "additions": 413,
+      "deletions": 48,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/actor-association.test.ts",
+      "additions": 147,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/apply-self-improvement-decision-cli.test.ts",
+      "additions": 539,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/approval.test.ts",
+      "additions": 7,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/discussion.test.ts",
+      "additions": 5,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/dispatch-agent-implement-cli.test.ts",
+      "additions": 4,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/docs-validation.test.ts",
+      "additions": 70,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/env.test.ts",
+      "additions": 24,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/envelope.test.ts",
+      "additions": 865,
+      "deletions": 39,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/extract-context-cli.test.ts",
+      "additions": 204,
+      "deletions": 5,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/followup-intent.test.ts",
+      "additions": 115,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/github-attachment-download.test.ts",
+      "additions": 274,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/github.test.ts",
+      "additions": 46,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/onboarding-check-cli.test.ts",
+      "additions": 14,
+      "deletions": 5,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/post-comment-cli.test.ts",
+      "additions": 68,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/post-response-cli.test.ts",
+      "additions": 56,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/preview-deployment-cli.test.ts",
+      "additions": 378,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/progress-cancel.test.ts",
+      "additions": 81,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/progress-final-comment.test.ts",
+      "additions": 30,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/progress-policy.test.ts",
+      "additions": 191,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/progress-render.test.ts",
+      "additions": 347,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/progress-report.test.ts",
+      "additions": 614,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/prompt-continuation.test.ts",
+      "additions": 25,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/reactions.test.ts",
+      "additions": 173,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/resolve-agent-provider.test.ts",
+      "additions": 84,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/resolve-dispatch-cli.test.ts",
+      "additions": 152,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/resolve-github-auth-oidc-shell.test.ts",
+      "additions": 165,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/response.test.ts",
+      "additions": 76,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/rubrics.test.ts",
+      "additions": 30,
+      "deletions": 20,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/runtime-env.test.ts",
+      "additions": 46,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/self-improvement-requester.test.ts",
+      "additions": 71,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/self-improvement.test.ts",
+      "additions": 118,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/__tests__/triage.test.ts",
+      "additions": 63,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/verify.test.ts",
+      "additions": 42,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/__tests__/workflow-action-validation.test.ts",
+      "additions": 341,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/acpx-adapter.ts",
+      "additions": 149,
+      "deletions": 20,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/actor-association.ts",
+      "additions": 116,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/answer-review-context.ts",
+      "additions": 37,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/approval.ts",
+      "additions": 5,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/apply-self-improvement-decision.ts",
+      "additions": 381,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/create-pr.ts",
+      "additions": 19,
+      "deletions": 7,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/download-github-attachment.ts",
+      "additions": 112,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/extract-context.ts",
+      "additions": 104,
+      "deletions": 99,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/inactivate-preview-deployments.ts",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/orchestrate-handoff.ts",
+      "additions": 1,
+      "deletions": 25,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/parse-response.ts",
+      "additions": 7,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/post-comment.ts",
+      "additions": 41,
+      "deletions": 4,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/post-response.ts",
+      "additions": 21,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/prepare-approval.ts",
+      "additions": 10,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/progress-report.ts",
+      "additions": 604,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/progress/resolve-policy.ts",
+      "additions": 86,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/publish-canonical-deployment.ts",
+      "additions": 37,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/publish-preview-deployment.ts",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/resolve-dispatch.ts",
+      "additions": 72,
+      "deletions": 2,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/cli/resolve-progress-status.ts",
+      "additions": 25,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/resolve-self-improvement-requester.ts",
+      "additions": 49,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/cli/verify.ts",
+      "additions": 8,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/deployments.ts",
+      "additions": 434,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/discussion.ts",
+      "additions": 5,
+      "deletions": 5,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/env.ts",
+      "additions": 7,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/envelope.ts",
+      "additions": 2,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/followup-intent.ts",
+      "additions": 104,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/github-attachment-download.ts",
+      "additions": 275,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/github.ts",
+      "additions": 23,
+      "deletions": 318,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/onboarding.ts",
+      "additions": 16,
+      "deletions": 13,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/progress-cancel.ts",
+      "additions": 103,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/progress-final-comment.ts",
+      "additions": 96,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/progress-policy.ts",
+      "additions": 158,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/progress-render.ts",
+      "additions": 495,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/prompt-continuation.ts",
+      "additions": 2,
+      "deletions": 0,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/reactions.ts",
+      "additions": 140,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/response.ts",
+      "additions": 107,
+      "deletions": 3,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/rubrics.ts",
+      "additions": 1,
+      "deletions": 1,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/run.ts",
+      "additions": 66,
+      "deletions": 32,
+      "changeType": "MODIFIED"
+    },
+    {
+      "path": ".agent/src/runtime-env.ts",
+      "additions": 62,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/self-improvement-requester.ts",
+      "additions": 68,
+      "deletions": 0,
+      "changeType": "ADDED"
+    },
+    {
+      "path": ".agent/src/self-improvement.ts",
+      "additions": 220,
+      "deletions": 0,
+      "changeType": "ADDED"
+    }
+  ],
+  "headRefName": "chore/issue-16-sepo-v0.5-migration",
+  "labels": [],
+  "mergedAt": null,
+  "number": 17,
+  "reviewDecision": "",
+  "reviews": [
+    {
+      "id": "PRR_kwDOSxuc6c8AAAABGgiuMw",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "",
+      "submittedAt": "2026-07-20T00:38:28Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "dfdaf8d65e159ebf35a1cb4d78ff50852340f595"
+      }
+    }
+  ],
+  "state": "OPEN",
+  "title": "Update infrastructure to Sepo v0.5.0",
+  "updatedAt": "2026-07-20T00:39:35Z",
+  "url": "https://github.com/self-evolving/literature-example-hcllms/pull/17"
+}
