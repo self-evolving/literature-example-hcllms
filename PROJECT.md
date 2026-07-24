@@ -29,3 +29,4 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 - `agent/rubrics` branch has not been initialized — `/review` calls return N/A scoring. Run `Agent / Rubrics / Initialization` workflow to bootstrap.
 - PR #6 (responsive sidebar toolbar) was closed unmerged — responsive layout fix may resurface as future work.
 - PR #13 (Update Sepo comments build contract) is open — drops legacy GISCUS_* aliases; requires migrating repo/Vercel vars to SEPO_COMMENTS_* before/with merge.
+- PR #18 (port v0.5 quartz frontend, giscus→sepoComments) is open — the frontend half completing the migration #17 started; pairs with PR #13 (workflow/deploy-side SEPO_COMMENTS_* contract), also open.
