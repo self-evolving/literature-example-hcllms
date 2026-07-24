@@ -30,7 +30,7 @@ jobs:
       mode: ${{ steps.gate.outputs.mode }}
       reason: ${{ steps.gate.outputs.reason }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
           persist-credentials: false
@@ -57,7 +57,7 @@ jobs:
       pull-requests: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -134,7 +134,7 @@ jobs:
           workflow: agent-self-improvement.yml
 
       - name: Upload self-improvement decision
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: self-improvement-decision-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ steps.planner.outputs.response_file }}
@@ -151,7 +151,7 @@ jobs:
       pull-requests: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
           persist-credentials: false
@@ -182,7 +182,7 @@ jobs:
         run: node .agent/dist/cli/resolve-self-improvement-requester.js
 
       - name: Download self-improvement decision
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: self-improvement-decision-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/self-improvement-decision
