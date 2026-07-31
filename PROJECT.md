@@ -24,7 +24,7 @@ Demonstrate the `self-evolving/literature-template` Quartz site pattern by hosti
 ## Open Questions
 
 - PR #1 (dependabot: CI deps bump, 5 packages) is open — needs review/merge.
-- Dependabot prod-deps chain #3→#9→#14→#15 all closed unmerged (superseded/regrouped by dependabot); expect further successors.
+- Dependabot prod-deps chain #3→#9→#14→#15 all closed unmerged (dependabot regroups each successor); #19 (32 pkgs) is the current open successor.
 - PR #12 (add paper note `content/papers/shen2026ai.md`, closes issue #11) is open.
 - `agent/rubrics` branch has not been initialized — `/review` calls return N/A scoring. Run `Agent / Rubrics / Initialization` workflow to bootstrap.
 - PR #6 (responsive sidebar toolbar) was closed unmerged — responsive layout fix may resurface as future work.
